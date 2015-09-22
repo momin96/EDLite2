@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5D008AFA1BA6CD4600AA5953 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D008AF91BA6CD4600AA5953 /* CouchbaseLite.framework */; };
+		5D09CDCD1BA2D2FB0050BE47 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D09CDCC1BA2D2FB0050BE47 /* User.m */; };
+		5D09CDD01BA2D57F0050BE47 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D09CDCF1BA2D57F0050BE47 /* Project.m */; };
+		5D0C4C7F1BAFD954002E8BE5 /* EDLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0C4C7E1BAFD954002E8BE5 /* EDLConnection.m */; };
+		5D0C4C821BAFDA53002E8BE5 /* EDLContracts.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0C4C811BAFDA53002E8BE5 /* EDLContracts.m */; };
+		5DC9E4501BA14CDD000414F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9E44F1BA14CDD000414F4 /* main.m */; };
+		5DC9E4531BA14CDD000414F4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9E4521BA14CDD000414F4 /* AppDelegate.m */; };
+		5DC9E4591BA14CDD000414F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC9E4571BA14CDD000414F4 /* Main.storyboard */; };
+		5DC9E45B1BA14CDD000414F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DC9E45A1BA14CDD000414F4 /* Images.xcassets */; };
+		5DC9E45E1BA14CDD000414F4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC9E45C1BA14CDD000414F4 /* LaunchScreen.xib */; };
+		5DC9E46A1BA14CDD000414F4 /* EDLiteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9E4691BA14CDD000414F4 /* EDLiteTests.m */; };
+		5DC9E4751BA14D86000414F4 /* ProjectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9E4741BA14D86000414F4 /* ProjectListViewController.m */; };
+		5DC9E47C1BA14EBC000414F4 /* CRLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9E47B1BA14EBC000414F4 /* CRLoadingView.m */; };
+		5DC9E4851BA15207000414F4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC9E4841BA15207000414F4 /* Security.framework */; };
+		5DC9E4871BA1520E000414F4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC9E4861BA1520E000414F4 /* libsqlite3.dylib */; };
+		5DC9E4891BA15215000414F4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC9E4881BA15215000414F4 /* CFNetwork.framework */; };
+		5DC9E48B1BA1523D000414F4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC9E48A1BA1523D000414F4 /* SystemConfiguration.framework */; };
+		5DC9E48D1BA1525B000414F4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC9E48C1BA1525B000414F4 /* libz.dylib */; };
+		5DC9E4901BA183C1000414F4 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9E48F1BA183C1000414F4 /* Constants.m */; };
+		5DC9E4931BA19141000414F4 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9E4921BA19141000414F4 /* ConnectionManager.m */; };
+		5DC9E49B1BA191A6000414F4 /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9E49A1BA191A6000414F4 /* Ticket.m */; };
+		5DC9E49E1BA19B59000414F4 /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9E49D1BA19B59000414F4 /* SyncManager.m */; };
+		5DFAC5551BA41F9A00811BA5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFAC5541BA41F9A00811BA5 /* LoginViewController.m */; };
+		5DFAC5581BA4300300811BA5 /* ProjectListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFAC5571BA4300300811BA5 /* ProjectListCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5DC9E4641BA14CDD000414F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5DC9E4421BA14CDD000414F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DC9E4491BA14CDD000414F4;
+			remoteInfo = EDLite;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5D008AF91BA6CD4600AA5953 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
+		5D09CDCB1BA2D2FB0050BE47 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = EDLite/Models/User.h; sourceTree = "<group>"; };
+		5D09CDCC1BA2D2FB0050BE47 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = EDLite/Models/User.m; sourceTree = "<group>"; };
+		5D09CDCE1BA2D57F0050BE47 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Project.h; path = EDLite/Models/Project.h; sourceTree = "<group>"; };
+		5D09CDCF1BA2D57F0050BE47 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Project.m; path = EDLite/Models/Project.m; sourceTree = "<group>"; };
+		5D0C4C7D1BAFD954002E8BE5 /* EDLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDLConnection.h; path = Managers/EDLConnection.h; sourceTree = "<group>"; };
+		5D0C4C7E1BAFD954002E8BE5 /* EDLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EDLConnection.m; path = Managers/EDLConnection.m; sourceTree = "<group>"; };
+		5D0C4C801BAFDA53002E8BE5 /* EDLContracts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDLContracts.h; path = EDLite/Models/EDLContracts.h; sourceTree = "<group>"; };
+		5D0C4C811BAFDA53002E8BE5 /* EDLContracts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EDLContracts.m; path = EDLite/Models/EDLContracts.m; sourceTree = "<group>"; };
+		5DC9E44A1BA14CDD000414F4 /* EDLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EDLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DC9E44E1BA14CDD000414F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DC9E44F1BA14CDD000414F4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5DC9E4511BA14CDD000414F4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5DC9E4521BA14CDD000414F4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5DC9E4581BA14CDD000414F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5DC9E45A1BA14CDD000414F4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5DC9E45D1BA14CDD000414F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		5DC9E4631BA14CDD000414F4 /* EDLiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EDLiteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DC9E4681BA14CDD000414F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DC9E4691BA14CDD000414F4 /* EDLiteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDLiteTests.m; sourceTree = "<group>"; };
+		5DC9E4731BA14D86000414F4 /* ProjectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectListViewController.h; path = Controllers/ProjectList/ProjectListViewController.h; sourceTree = "<group>"; };
+		5DC9E4741BA14D86000414F4 /* ProjectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectListViewController.m; path = Controllers/ProjectList/ProjectListViewController.m; sourceTree = "<group>"; };
+		5DC9E4791BA14E64000414F4 /* EDLite.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDLite.pch; sourceTree = SOURCE_ROOT; };
+		5DC9E47A1BA14EBC000414F4 /* CRLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRLoadingView.h; sourceTree = "<group>"; };
+		5DC9E47B1BA14EBC000414F4 /* CRLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRLoadingView.m; sourceTree = "<group>"; };
+		5DC9E4841BA15207000414F4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5DC9E4861BA1520E000414F4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		5DC9E4881BA15215000414F4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		5DC9E48A1BA1523D000414F4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5DC9E48C1BA1525B000414F4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		5DC9E48E1BA183C1000414F4 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = SOURCE_ROOT; };
+		5DC9E48F1BA183C1000414F4 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = SOURCE_ROOT; };
+		5DC9E4911BA19141000414F4 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectionManager.h; path = Managers/ConnectionManager.h; sourceTree = "<group>"; };
+		5DC9E4921BA19141000414F4 /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConnectionManager.m; path = Managers/ConnectionManager.m; sourceTree = "<group>"; };
+		5DC9E4991BA191A5000414F4 /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ticket.h; path = EDLite/Models/Ticket.h; sourceTree = "<group>"; };
+		5DC9E49A1BA191A6000414F4 /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ticket.m; path = EDLite/Models/Ticket.m; sourceTree = "<group>"; };
+		5DC9E49C1BA19B59000414F4 /* SyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncManager.h; path = Managers/SyncManager.h; sourceTree = "<group>"; };
+		5DC9E49D1BA19B59000414F4 /* SyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncManager.m; path = Managers/SyncManager.m; sourceTree = "<group>"; };
+		5DFAC5531BA41F9A00811BA5 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Controllers/LoginViewController.h; sourceTree = "<group>"; };
+		5DFAC5541BA41F9A00811BA5 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Controllers/LoginViewController.m; sourceTree = "<group>"; };
+		5DFAC5561BA4300300811BA5 /* ProjectListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectListCell.h; path = Controllers/ProjectList/ProjectListCell.h; sourceTree = "<group>"; };
+		5DFAC5571BA4300300811BA5 /* ProjectListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectListCell.m; path = Controllers/ProjectList/ProjectListCell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5DC9E4471BA14CDD000414F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DC9E48D1BA1525B000414F4 /* libz.dylib in Frameworks */,
+				5DC9E48B1BA1523D000414F4 /* SystemConfiguration.framework in Frameworks */,
+				5DC9E4891BA15215000414F4 /* CFNetwork.framework in Frameworks */,
+				5DC9E4871BA1520E000414F4 /* libsqlite3.dylib in Frameworks */,
+				5D008AFA1BA6CD4600AA5953 /* CouchbaseLite.framework in Frameworks */,
+				5DC9E4851BA15207000414F4 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DC9E4601BA14CDD000414F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5DC9E4411BA14CDD000414F4 = {
+			isa = PBXGroup;
+			children = (
+				5DC9E44C1BA14CDD000414F4 /* EDLite */,
+				5DC9E4661BA14CDD000414F4 /* EDLiteTests */,
+				5DC9E44B1BA14CDD000414F4 /* Products */,
+				5DC9E4811BA1517A000414F4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5DC9E44B1BA14CDD000414F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5DC9E44A1BA14CDD000414F4 /* EDLite.app */,
+				5DC9E4631BA14CDD000414F4 /* EDLiteTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5DC9E44C1BA14CDD000414F4 /* EDLite */ = {
+			isa = PBXGroup;
+			children = (
+				5DC9E4511BA14CDD000414F4 /* AppDelegate.h */,
+				5DC9E4521BA14CDD000414F4 /* AppDelegate.m */,
+				5DC9E4941BA1914D000414F4 /* Managers */,
+				5DC9E4761BA14D8D000414F4 /* Controllers */,
+				5DC9E4781BA14DA4000414F4 /* Storyboard */,
+				5DC9E45A1BA14CDD000414F4 /* Images.xcassets */,
+				5DC9E4981BA19180000414F4 /* Models */,
+				5DC9E44D1BA14CDD000414F4 /* Supporting Files */,
+			);
+			path = EDLite;
+			sourceTree = "<group>";
+		};
+		5DC9E44D1BA14CDD000414F4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DC9E47D1BA14EC0000414F4 /* LoadingView */,
+				5DC9E45C1BA14CDD000414F4 /* LaunchScreen.xib */,
+				5DC9E4791BA14E64000414F4 /* EDLite.pch */,
+				5DC9E44E1BA14CDD000414F4 /* Info.plist */,
+				5DC9E48E1BA183C1000414F4 /* Constants.h */,
+				5DC9E48F1BA183C1000414F4 /* Constants.m */,
+				5DC9E44F1BA14CDD000414F4 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5DC9E4661BA14CDD000414F4 /* EDLiteTests */ = {
+			isa = PBXGroup;
+			children = (
+				5DC9E4691BA14CDD000414F4 /* EDLiteTests.m */,
+				5DC9E4671BA14CDD000414F4 /* Supporting Files */,
+			);
+			path = EDLiteTests;
+			sourceTree = "<group>";
+		};
+		5DC9E4671BA14CDD000414F4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DC9E4681BA14CDD000414F4 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5DC9E4761BA14D8D000414F4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5DC9E4771BA14D99000414F4 /* ProjectList */,
+				5DFAC5531BA41F9A00811BA5 /* LoginViewController.h */,
+				5DFAC5541BA41F9A00811BA5 /* LoginViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		5DC9E4771BA14D99000414F4 /* ProjectList */ = {
+			isa = PBXGroup;
+			children = (
+				5DC9E4731BA14D86000414F4 /* ProjectListViewController.h */,
+				5DC9E4741BA14D86000414F4 /* ProjectListViewController.m */,
+				5DFAC5591BA4300A00811BA5 /* Project Cell */,
+			);
+			name = ProjectList;
+			sourceTree = "<group>";
+		};
+		5DC9E4781BA14DA4000414F4 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				5DC9E4571BA14CDD000414F4 /* Main.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		5DC9E47D1BA14EC0000414F4 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				5DC9E47A1BA14EBC000414F4 /* CRLoadingView.h */,
+				5DC9E47B1BA14EBC000414F4 /* CRLoadingView.m */,
+			);
+			name = LoadingView;
+			sourceTree = "<group>";
+		};
+		5DC9E4811BA1517A000414F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5DC9E48C1BA1525B000414F4 /* libz.dylib */,
+				5DC9E48A1BA1523D000414F4 /* SystemConfiguration.framework */,
+				5DC9E4881BA15215000414F4 /* CFNetwork.framework */,
+				5DC9E4861BA1520E000414F4 /* libsqlite3.dylib */,
+				5D008AF91BA6CD4600AA5953 /* CouchbaseLite.framework */,
+				5DC9E4841BA15207000414F4 /* Security.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		5DC9E4941BA1914D000414F4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5DC9E4911BA19141000414F4 /* ConnectionManager.h */,
+				5DC9E4921BA19141000414F4 /* ConnectionManager.m */,
+				5D0C4C7D1BAFD954002E8BE5 /* EDLConnection.h */,
+				5D0C4C7E1BAFD954002E8BE5 /* EDLConnection.m */,
+				5DC9E49C1BA19B59000414F4 /* SyncManager.h */,
+				5DC9E49D1BA19B59000414F4 /* SyncManager.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		5DC9E4981BA19180000414F4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5D09CDCB1BA2D2FB0050BE47 /* User.h */,
+				5D09CDCC1BA2D2FB0050BE47 /* User.m */,
+				5DC9E4991BA191A5000414F4 /* Ticket.h */,
+				5DC9E49A1BA191A6000414F4 /* Ticket.m */,
+				5D09CDCE1BA2D57F0050BE47 /* Project.h */,
+				5D09CDCF1BA2D57F0050BE47 /* Project.m */,
+				5D0C4C801BAFDA53002E8BE5 /* EDLContracts.h */,
+				5D0C4C811BAFDA53002E8BE5 /* EDLContracts.m */,
+			);
+			name = Models;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		5DFAC5591BA4300A00811BA5 /* Project Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5DFAC5561BA4300300811BA5 /* ProjectListCell.h */,
+				5DFAC5571BA4300300811BA5 /* ProjectListCell.m */,
+			);
+			name = "Project Cell";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5DC9E4491BA14CDD000414F4 /* EDLite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DC9E46D1BA14CDD000414F4 /* Build configuration list for PBXNativeTarget "EDLite" */;
+			buildPhases = (
+				5DC9E4461BA14CDD000414F4 /* Sources */,
+				5DC9E4471BA14CDD000414F4 /* Frameworks */,
+				5DC9E4481BA14CDD000414F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EDLite;
+			productName = EDLite;
+			productReference = 5DC9E44A1BA14CDD000414F4 /* EDLite.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5DC9E4621BA14CDD000414F4 /* EDLiteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DC9E4701BA14CDD000414F4 /* Build configuration list for PBXNativeTarget "EDLiteTests" */;
+			buildPhases = (
+				5DC9E45F1BA14CDD000414F4 /* Sources */,
+				5DC9E4601BA14CDD000414F4 /* Frameworks */,
+				5DC9E4611BA14CDD000414F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5DC9E4651BA14CDD000414F4 /* PBXTargetDependency */,
+			);
+			name = EDLiteTests;
+			productName = EDLiteTests;
+			productReference = 5DC9E4631BA14CDD000414F4 /* EDLiteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5DC9E4421BA14CDD000414F4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Nasir;
+				TargetAttributes = {
+					5DC9E4491BA14CDD000414F4 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					5DC9E4621BA14CDD000414F4 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 5DC9E4491BA14CDD000414F4;
+					};
+				};
+			};
+			buildConfigurationList = 5DC9E4451BA14CDD000414F4 /* Build configuration list for PBXProject "EDLite" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5DC9E4411BA14CDD000414F4;
+			productRefGroup = 5DC9E44B1BA14CDD000414F4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5DC9E4491BA14CDD000414F4 /* EDLite */,
+				5DC9E4621BA14CDD000414F4 /* EDLiteTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5DC9E4481BA14CDD000414F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DC9E4591BA14CDD000414F4 /* Main.storyboard in Resources */,
+				5DC9E45E1BA14CDD000414F4 /* LaunchScreen.xib in Resources */,
+				5DC9E45B1BA14CDD000414F4 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DC9E4611BA14CDD000414F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5DC9E4461BA14CDD000414F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DC9E4901BA183C1000414F4 /* Constants.m in Sources */,
+				5DC9E47C1BA14EBC000414F4 /* CRLoadingView.m in Sources */,
+				5D09CDCD1BA2D2FB0050BE47 /* User.m in Sources */,
+				5D0C4C821BAFDA53002E8BE5 /* EDLContracts.m in Sources */,
+				5D0C4C7F1BAFD954002E8BE5 /* EDLConnection.m in Sources */,
+				5D09CDD01BA2D57F0050BE47 /* Project.m in Sources */,
+				5DC9E49E1BA19B59000414F4 /* SyncManager.m in Sources */,
+				5DC9E4751BA14D86000414F4 /* ProjectListViewController.m in Sources */,
+				5DC9E4931BA19141000414F4 /* ConnectionManager.m in Sources */,
+				5DC9E4531BA14CDD000414F4 /* AppDelegate.m in Sources */,
+				5DC9E4501BA14CDD000414F4 /* main.m in Sources */,
+				5DFAC5551BA41F9A00811BA5 /* LoginViewController.m in Sources */,
+				5DC9E49B1BA191A6000414F4 /* Ticket.m in Sources */,
+				5DFAC5581BA4300300811BA5 /* ProjectListCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DC9E45F1BA14CDD000414F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DC9E46A1BA14CDD000414F4 /* EDLiteTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5DC9E4651BA14CDD000414F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5DC9E4491BA14CDD000414F4 /* EDLite */;
+			targetProxy = 5DC9E4641BA14CDD000414F4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5DC9E4571BA14CDD000414F4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DC9E4581BA14CDD000414F4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5DC9E45C1BA14CDD000414F4 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DC9E45D1BA14CDD000414F4 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5DC9E46B1BA14CDD000414F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5DC9E46C1BA14CDD000414F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5DC9E46E1BA14CDD000414F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = EDLite.pch;
+				INFOPLIST_FILE = EDLite/Info.plist;
+				INFOPLIST_PREFIX_HEADER = EDLite.pch;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		5DC9E46F1BA14CDD000414F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = EDLite.pch;
+				INFOPLIST_FILE = EDLite/Info.plist;
+				INFOPLIST_PREFIX_HEADER = EDLite.pch;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		5DC9E4711BA14CDD000414F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = EDLiteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EDLite.app/EDLite";
+			};
+			name = Debug;
+		};
+		5DC9E4721BA14CDD000414F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = EDLiteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EDLite.app/EDLite";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5DC9E4451BA14CDD000414F4 /* Build configuration list for PBXProject "EDLite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DC9E46B1BA14CDD000414F4 /* Debug */,
+				5DC9E46C1BA14CDD000414F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DC9E46D1BA14CDD000414F4 /* Build configuration list for PBXNativeTarget "EDLite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DC9E46E1BA14CDD000414F4 /* Debug */,
+				5DC9E46F1BA14CDD000414F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DC9E4701BA14CDD000414F4 /* Build configuration list for PBXNativeTarget "EDLiteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DC9E4711BA14CDD000414F4 /* Debug */,
+				5DC9E4721BA14CDD000414F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5DC9E4421BA14CDD000414F4 /* Project object */;
+}
