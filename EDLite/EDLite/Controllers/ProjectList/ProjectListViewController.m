@@ -22,16 +22,7 @@
 @implementation ProjectListViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    ConnectionManager* connectionManager = [ConnectionManager sharedConnectionManager];
-    [connectionManager prepareConnectionWithContracts:self.contracts completionHandler:^(BOOL finished,NSArray* projectList) {
-        if (finished) {
-            self.projectList = projectList;
-            [self.projectTableView reloadData];
-        }
-    }];
-    
+    [super viewDidLoad];    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,16 +39,16 @@
     
     static NSString* cellIdentifier = @"ProjectListCell";
     ProjectListCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
+    cell.indexPath = indexPath;
     Project* project = self.projectList[indexPath.row];
+    cell.project = project;
     
-    cell.projectNameLabel.text = project.projectName;
-    UIImage* thumbImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:project.thumbImage]]];
-    cell.thumbImageView.image = thumbImage;
-    
-    ConnectionManager* connectionManager = [ConnectionManager sharedConnectionManager];
-    EDLConnection* connection = connectionManager.connectionList[indexPath.row];
-    cell.connection = connection;
+//    cell.projectNameLabel.text = project.projectName;
+//    UIImage* thumbImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:project.thumbImage]]];
+//    cell.thumbImageView.image = thumbImage;
+//    ConnectionManager* connectionManager = [ConnectionManager sharedConnectionManager];
+//    EDLConnection* connection = connectionManager.connectionList[indexPath.row];
+//    cell.connection = connection;
 
     return cell;
 }

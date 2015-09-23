@@ -16,12 +16,9 @@
 @property (nonatomic) NSURL* replicationURL;
 
 @property (nonatomic) CBLReplication* pull;
-@property (nonatomic) CBLReplication* push;
+//@property (nonatomic) CBLReplication* push;
 
-@property(nonatomic, readonly) unsigned completed, total;
 @property(nonatomic, readonly) float progress;
-@property(nonatomic, readonly) bool active;
-@property(nonatomic, readonly) CBLReplicationStatus status;
 
 @property (nonatomic) EDLConnection* connection;
 

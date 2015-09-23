@@ -11,15 +11,6 @@
 
 @implementation EDLConnection
 
--(instancetype)initProjectWithSource:(NSURL*)source target:(NSString*)target{
-    self = [super init];
-    if(self){
-        _source = source;
-        _target = target;
-        _database = [self databaseNameWithTarget:target];
-    }
-    return self;
-}
 
 -(CBLDatabase*)databaseNameWithTarget:(NSString*)databaseName{
     CBLManager *manager = [ConnectionManager sharedConnectionManager].manager;
@@ -44,10 +35,7 @@
     return  self;
 }
 
-//-(void)initReplicationWithDocIDs:(NSArray *)docIDs{
-//    self.syncManager = [[SyncManager alloc]initReplicationWithURL:_source database:_database];
-//    [self.syncManager startUserDocReplicationWithDocIDs:docIDs];
-//}
+
 
 
 @end

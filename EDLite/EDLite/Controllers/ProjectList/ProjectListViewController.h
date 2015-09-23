@@ -11,6 +11,5 @@
 @interface ProjectListViewController : UIViewController
 
 @property (nonatomic) NSArray* projectList;
-@property (nonatomic) NSDictionary* contracts;
 
 @end
