@@ -7,6 +7,16 @@
 //
 
 #import "ConnectionManager.h"
+
+@protocol LoginViewControllerDelegate <NSObject>
+
+@optional
+-(void)reloadProjects:(NSArray*)projectList;
+
+@end
+
 @interface LoginViewController : UIViewController
+
+@property (weak,nonatomic) id <LoginViewControllerDelegate> delegate;
 
 @end

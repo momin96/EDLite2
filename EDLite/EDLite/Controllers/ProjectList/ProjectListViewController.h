@@ -8,10 +8,8 @@
 
 #import "ConnectionManager.h"
 
-@interface ProjectListViewController : UIViewController
+@interface ProjectListViewController : UIViewController 
 
 @property (nonatomic) NSArray* projectList;
 
-
--(void)reloadProjects;
 @end

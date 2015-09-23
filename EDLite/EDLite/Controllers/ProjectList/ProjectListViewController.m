@@ -12,7 +12,7 @@
 #import "Project.h"
 #import "ProjectListCell.h"
 #import "LoginViewController.h"
-@interface ProjectListViewController ()
+@interface ProjectListViewController () <LoginViewControllerDelegate>
 
 @property (nonatomic) SyncManager* syncManager;
 
@@ -22,8 +22,19 @@
 
 @implementation ProjectListViewController
 
+-(void)dealloc{
+    NSLog(@"Dealloc ProjectViewController");
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIBarButtonItem* leftBarButton =[[UIBarButtonItem alloc]initWithTitle:@"logout"
+                                                                    style:UIBarButtonItemStylePlain
+                                                                   target:self
+                                                                   action:@selector(tappedLogoutButton)];
+    
+    [self.navigationItem setLeftBarButtonItem:leftBarButton];
     
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"activeUser"]){
 //        [self reloadProjects];
@@ -31,10 +42,16 @@
     else{
         //Present Login View Controller
         LoginViewController* loginViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        loginViewController.delegate = self;
         [self presentViewController:loginViewController
                            animated:YES
                          completion:nil];
     }
+    
+}
+
+
+-(void)tappedLogoutButton{
     
 }
 
@@ -46,7 +63,8 @@
     NSLog(@"ProjectListViewController didReceiveMemoryWarning");
 }
 
--(void)reloadProjects{
+-(void)reloadProjects:(NSArray *)projectList{
+    self.projectList =projectList;
     [self.projectTableView reloadData];
 }
 

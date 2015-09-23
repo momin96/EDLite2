@@ -20,27 +20,13 @@
 
 @implementation LoginViewController
 
+-(void)dealloc{
+    NSLog(@"Dealloc LoginViewViewController");
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self registerNotification];
-//
-//    UIBarButtonItem* leftBarButton =[[UIBarButtonItem alloc]initWithTitle:@"Login"
-//                                                                    style:UIBarButtonItemStylePlain
-//                                                                   target:self
-//                                                                   action:@selector(tappedLeftNavigationItem)];
-//    
-//    [self.navigationItem setLeftBarButtonItem:leftBarButton];
-//    
-//    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"activeUser"]) {
-//        [self.navigationItem.leftBarButtonItem setTitle:@"Logout"];
-//        self.loginEmail = [[NSUserDefaults standardUserDefaults] objectForKey:@"activeUser"];
-//        [self prepareConnection];
-//    }
-//    else{
-//        [self.navigationItem.leftBarButtonItem setTitle:@"Login"];
-//        [self presentAlertController];
-//    }
     
 }
 
@@ -56,17 +42,6 @@
                                                object:nil ];
 }
 
--(void)tappedLeftNavigationItem{
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"activeUser"]) {
-        [self presentAlertController];
-    }
-    else{
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"activeUser"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self.navigationItem.leftBarButtonItem setTitle:@"Login"];
-        [CRLoadingView removeView];
-    }
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -105,13 +80,11 @@
 
     if([projectList count]){
         [CRLoadingView removeView];
-        ProjectListViewController* projectListViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"ProjectListViewController"];
-        projectListViewController.projectList = projectList;
         
+        if([_delegate respondsToSelector:@selector(reloadProjects:)])
+            [_delegate reloadProjects:projectList];
         [self dismissViewControllerAnimated:YES completion:nil];
-        [projectListViewController reloadProjects];
-//        [self.navigationController pushViewController:projectListViewController animated:YES];
-
+        
     }
 }
 
