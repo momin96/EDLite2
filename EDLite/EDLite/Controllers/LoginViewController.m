@@ -86,7 +86,7 @@
 }
 
 -(void)loadProjectViewController{
-    NSMutableArray* projectList = [[NSMutableArray alloc] initWithCapacity:0];
+    NSMutableArray* projectList = [[NSMutableArray alloc] init];
     NSArray* allContracts =  [self.currentUser.contracts allKeys];
     for (NSString* contractName in allContracts) {
         NSArray* projectKeys = [[[self.currentUser.contracts  objectForKey:contractName] objectForKey:@"databases"] allKeys];
@@ -94,10 +94,8 @@
         for (NSString* projectInfo in projectKeys) {
             
             NSDictionary* projectInfoDict = [[[self.currentUser.contracts  objectForKey:contractName] objectForKey:@"databases"] objectForKey:projectInfo];
-            
             Project* project = [[Project alloc]initProjectWithDictionary:projectInfoDict databaseName:projectInfo];
             [projectList addObject:project];
-            
         }   //end inner for-in loop
     }   //end outer for-in loop
 

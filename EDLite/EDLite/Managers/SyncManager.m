@@ -79,6 +79,7 @@
         }
         _progress = progress;
     }
+    
     if(self.pull.status ==  kCBLReplicationActive)
         [self.cell showSyncStatus:_progress];
     else if(self.pull.status == kCBLReplicationStopped)

@@ -22,16 +22,7 @@
 @implementation ProjectListViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-//    ConnectionManager* connectionManager = [ConnectionManager sharedConnectionManager];
-//    [connectionManager prepareConnectionWithContracts:self.contracts completionHandler:^(BOOL finished,NSArray* projectList) {
-//        if (finished) {
-//            self.projectList = projectList;
-//            [self.projectTableView reloadData];
-//        }
-//    }];
-    
+    [super viewDidLoad];    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -9,8 +9,6 @@
 
 @interface ProjectListCell : UITableViewCell
 
-@property (nonatomic) CBLDatabase* database;
-//@property (nonatomic) CBLReplication* pull;
 @property (nonatomic) Project* project;
 @property (nonatomic) NSIndexPath* indexPath;
 @property (nonatomic) EDLConnection* connection;
@@ -26,6 +24,5 @@
 
 -(void)showSyncStatus:(float)status;
 -(void)hideCompletedSync;
-
 -(void)stopSync;
 @end

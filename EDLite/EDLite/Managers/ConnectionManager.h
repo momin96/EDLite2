@@ -8,25 +8,19 @@
 
 #import "EDLConnection.h"
 
-@class User;
 @interface ConnectionManager : NSObject
 
 @property (nonatomic) CBLManager* manager;
 @property (nonatomic) CBLDatabase* database;
-@property (nonatomic) NSMutableArray* connectionList;
 @property (nonatomic) NSMutableDictionary* connectionDict;
 
+//@property (nonatomic) NSMutableArray* connectionList;
 
-@property (nonatomic) User* activeUser;
-@property (nonatomic) NSString* loginEmail;
 
 
 +(ConnectionManager*)sharedConnectionManager;
 
 -(CBLDatabase*)createDatabaseWithName:(NSString*)databaseName;
-
--(void)prepareConnectionWithContracts:(NSDictionary*)contractDictionary completionHandler:(void(^)(BOOL finished, NSArray* projectList))completionHandler;
-
 
 -(void)createConnectionForProject:(Project*)project withIndexPath:(NSIndexPath*)indexPath;
 
