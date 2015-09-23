@@ -21,7 +21,9 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    
+    self.projectNameLabel.text = self.project.projectName;
+    UIImage* thumbImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.project.thumbImage]]];
+    self.thumbImageView.image = thumbImage;
     self.connection.syncManager.cell = self;
 }
 
@@ -47,8 +49,6 @@
     self.noOfMaps.text = [NSString stringWithFormat:@"%lu Maps",(unsigned long)[self countOfMaps]];
     self.noOfTickets.text = [NSString stringWithFormat:@"%lu Tickets",(unsigned long)[self countOfTickets]];
     [self.progressView setProgressViewStyle:UIProgressViewStyleDefault];
-
-
 }
 
 -(void)stopSync{
@@ -101,7 +101,15 @@
 #pragma mark -- Target Action
 
 -(IBAction)tappedControlStateButton:(UIButton*)sender{
-
+    if([sender.titleLabel.text isEqualToString:@"Download"]){
+        ConnectionManager* connectionManager = [ConnectionManager sharedConnectionManager];
+        [connectionManager createConnectionForProject:self.project withIndexPath:self.indexPath];
+        EDLConnection* connection = [connectionManager.connectionDict objectForKey:self.indexPath];
+        self.connection = connection;
+        self.connection.syncManager.cell = self;
+        [self.controlStateButton setTitle:@"Pause" forState:UIControlStateNormal];
+    }
+    else{
         if (self.connection.syncManager.pull.running) {    // If Pull replication is running and pause button pressed, Update title to Resume
             [self.connection.syncManager stopSync];
             [self.controlStateButton setTitle:@"Resume" forState:UIControlStateNormal];
@@ -110,7 +118,7 @@
             [self.connection.syncManager startSync];
             [self.controlStateButton setTitle:@"Pause" forState:UIControlStateNormal];
         }
-    
+    }
 }
 
 @end

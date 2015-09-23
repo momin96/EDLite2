@@ -13,10 +13,12 @@
 
 @property (nonatomic) CBLManager* manager;
 @property (nonatomic) CBLDatabase* database;
-@property (nonatomic) User* activeUser;
 @property (nonatomic) NSMutableArray* connectionList;
-@property (nonatomic) NSString* loginEmail;
+@property (nonatomic) NSMutableDictionary* connectionDict;
 
+
+@property (nonatomic) User* activeUser;
+@property (nonatomic) NSString* loginEmail;
 
 
 +(ConnectionManager*)sharedConnectionManager;
@@ -26,7 +28,7 @@
 -(void)prepareConnectionWithContracts:(NSDictionary*)contractDictionary completionHandler:(void(^)(BOOL finished, NSArray* projectList))completionHandler;
 
 
-//-(void)createConnectionForProject:(Project*)project;
+-(void)createConnectionForProject:(Project*)project withIndexPath:(NSIndexPath*)indexPath;
 
 
 

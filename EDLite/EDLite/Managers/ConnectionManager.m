@@ -17,6 +17,7 @@
 -(instancetype)init{
     self = [super init];
     if (self) {
+        self.connectionDict = [[NSMutableDictionary alloc]init];
         self.manager = [CBLManager sharedInstance];
         if(!self.manager){
             NSLog(@"Manager Creation fails");
@@ -52,11 +53,12 @@
 }
 
 
-//-(void)createConnectionForProject:(Project *)project{
-//    EDLConnection* connection = [self connectinForProjectInfo:project];
-////    [self addObserverForConnection:connection];
-//    [self.connectionList addObject:connection];
-//}
+-(void)createConnectionForProject:(Project *)project withIndexPath:(NSIndexPath*)indexPath{
+    EDLConnection* connection = [self connectinForProjectInfo:project];
+//    [self addObserverForConnection:connection];
+    [self.connectionDict setObject:connection forKey:indexPath];
+    NSLog(@"Connection Dict : [%@]",self.connectionDict);
+}
 
 -(void)prepareConnectionWithContracts:(NSDictionary *)contractDictionary completionHandler:(void (^)(BOOL finished, NSArray* projectList))completionHandler{
     
