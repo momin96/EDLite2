@@ -9,9 +9,6 @@
 
 @interface ProjectListCell : UITableViewCell
 
-@property (nonatomic) Project* project;
-@property (nonatomic) NSIndexPath* indexPath;
-@property (nonatomic) EDLConnection* connection;
 
 @property (weak, nonatomic) IBOutlet UIImageView* thumbImageView;
 @property (weak, nonatomic) IBOutlet UILabel* projectNameLabel;
@@ -22,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton* controlStateButton;
 
 
--(void)showSyncStatus:(float)status;
--(void)hideCompletedSync;
--(void)stopSync;
+//-(void)showSyncStatus:(float)status;
+//-(void)hideCompletedSync;
+//-(void)stopSync;
 @end

@@ -36,6 +36,14 @@
 }
 
 
-
+-(instancetype)initUserDocWithDatabaseName:(NSString*)databaseName syncURL:(NSURL*)syncURL{
+    self = [super init];
+    if(self){
+        _source = syncURL;
+        _target = databaseName;
+        _database = [self databaseNameWithTarget:databaseName];
+    }
+    return self;
+}
 
 @end

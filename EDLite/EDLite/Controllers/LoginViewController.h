@@ -7,11 +7,11 @@
 //
 
 #import "ConnectionManager.h"
-
+@class User;
 @protocol LoginViewControllerDelegate <NSObject>
 
 @optional
--(void)reloadProjects:(NSArray*)projectList;
+-(void)prepareConnectionWithUser:(User*)activeUser;
 
 @end
 

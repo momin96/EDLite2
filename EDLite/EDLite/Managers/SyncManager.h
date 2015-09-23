@@ -10,25 +10,18 @@
 #import "ProjectListCell.h"
 @interface SyncManager : NSObject
 
-@property (nonatomic) ProjectListCell* cell;
-
-@property (nonatomic) CBLDatabase* database;
-@property (nonatomic) NSURL* replicationURL;
 
 @property (nonatomic) CBLReplication* pull;
-//@property (nonatomic) CBLReplication* push;
 
 @property(nonatomic, readonly) float progress;
 
 @property (nonatomic) EDLConnection* connection;
 
--(instancetype)initReplicationWithURL:(NSURL*)url database:(CBLDatabase*)database;
+-(instancetype)initSyncForConnection:(EDLConnection*)connection;
 -(void)startUserDocReplicationWithDocIDs:(NSArray*)docIDs;
 
 
--(instancetype)initSyncForConnection:(EDLConnection*)connection;
 -(void)defineSync;
-
 -(void)startSync;
 -(void)stopSync;
 

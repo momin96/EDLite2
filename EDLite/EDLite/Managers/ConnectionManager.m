@@ -17,7 +17,6 @@
 -(instancetype)init{
     self = [super init];
     if (self) {
-        self.connectionDict = [[NSMutableDictionary alloc]init]; // needs only one time initialization
         self.manager = [CBLManager sharedInstance];
         if(!self.manager){
             NSLog(@"Manager Creation fails");
@@ -52,14 +51,19 @@
     return database;
 }
 
-
--(void)createConnectionForProject:(Project *)project withIndexPath:(NSIndexPath*)indexPath{
-    EDLConnection* connection = [self connectinForProjectInfo:project];
-    [self.connectionDict setObject:connection forKey:indexPath];
-    NSLog(@"Connection Dict : [%@]",self.connectionDict); //Debugging
+-(CBLDocument*)replicateUserDocWithDocID:(NSString *)docID{
+    NSURL* syncURL = [NSURL URLWithString:[SERVER_URL stringByAppendingString:USERS_DATABASE]];
+    EDLConnection* connection = [[EDLConnection alloc] initUserDocWithDatabaseName:USERS_DATABASE syncURL:syncURL];
+    SyncManager* syncManager = [[SyncManager alloc] initSyncForConnection:connection];
+    [syncManager startUserDocReplicationWithDocIDs:@[docID]];
+    return [connection.database documentWithID:docID];
 }
 
-
+//-(void)createConnectionForProject:(Project *)project withIndexPath:(NSIndexPath*)indexPath{
+//    EDLConnection* connection = [self connectinForProjectInfo:project];
+//    [self.connectionDict setObject:connection forKey:indexPath];
+//    NSLog(@"Connection Dict : [%@]",self.connectionDict); //Debugging
+//}
 
 
 -(EDLConnection*)connectinForProjectInfo:(Project*)projectInfo{
@@ -71,45 +75,45 @@
 }
 
 
-//-(void)addObserverForConnection:(EDLConnection*)connection{
-//    [connection addObserver:self
-//                 forKeyPath:kEDLConnectionState
-//                    options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-//                    context:NULL];
-//}
+-(void)addObserverForConnection:(EDLConnection*)connection{
+    [connection addObserver:self
+                 forKeyPath:kEDLConnectionState
+                    options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                    context:NULL];
+}
 
-//-(void)prepareConnectionWithContracts:(NSDictionary *)contractDictionary completionHandler:(void (^)(BOOL finished, NSArray* projectList))completionHandler{
-//
-//    NSMutableArray* projectList = [[NSMutableArray alloc] initWithCapacity:0];
-//    NSArray* allContracts =  [contractDictionary allKeys];
-//    for (NSString* contractName in allContracts) {
-//        NSArray* projectKeys = [[[contractDictionary objectForKey:contractName] objectForKey:@"databases"] allKeys];
-//
-//        for (NSString* projectInfo in projectKeys) {
-//
-//            NSDictionary* projectInfoDict = [[[contractDictionary objectForKey:contractName] objectForKey:@"databases"] objectForKey:projectInfo];
-//
-//            Project* project = [[Project alloc]initProjectWithDictionary:projectInfoDict databaseName:projectInfo];
-//            [projectList addObject:project];
-//
-//        }   //end inner for-in loop
-//    }   //end outer for-in loop
-//
-//    if([projectList count])
-//        completionHandler(YES,projectList);
-//    else
-//        completionHandler(NO,nil);
-//
-//    [self _connectionForProjectList:projectList];
-//}
+-(void)prepareConnectionWithContracts:(NSDictionary *)contractDictionary completionHandler:(void (^)(BOOL finished, NSArray* projectList))completionHandler{
 
-//-(void)_connectionForProjectList:(NSArray*)projectList{
-//
-//    self.connectionList = [[NSMutableArray alloc] init];
-//    for (Project* projectInfo in projectList) {
-//        EDLConnection* connection = [self connectinForProjectInfo:projectInfo];
-//        [self addObserverForConnection:connection];
-//        [self.connectionList addObject:connection];
-//    }
-//}
+    NSMutableArray* projectList = [[NSMutableArray alloc] initWithCapacity:0];
+    NSArray* allContracts =  [contractDictionary allKeys];
+    for (NSString* contractName in allContracts) {
+        NSArray* projectKeys = [[[contractDictionary objectForKey:contractName] objectForKey:@"databases"] allKeys];
+
+        for (NSString* projectInfo in projectKeys) {
+
+            NSDictionary* projectInfoDict = [[[contractDictionary objectForKey:contractName] objectForKey:@"databases"] objectForKey:projectInfo];
+
+            Project* project = [[Project alloc]initProjectWithDictionary:projectInfoDict databaseName:projectInfo];
+            [projectList addObject:project];
+
+        }   //end inner for-in loop
+    }   //end outer for-in loop
+
+    if([projectList count])
+        completionHandler(YES,projectList);
+    else
+        completionHandler(NO,nil);
+
+    [self _connectionForProjectList:projectList];
+}
+
+-(void)_connectionForProjectList:(NSArray*)projectList{
+
+    self.connectionList = [[NSMutableArray alloc] init];
+    for (Project* projectInfo in projectList) {
+        EDLConnection* connection = [self connectinForProjectInfo:projectInfo];
+        [self addObserverForConnection:connection];
+        [self.connectionList addObject:connection];
+    }
+}
 @end

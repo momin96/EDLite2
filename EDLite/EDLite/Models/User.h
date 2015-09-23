@@ -16,7 +16,6 @@
 @property (nonatomic) NSString* name;
 @property (nonatomic) NSDictionary* userInfo;
 
-
 -(instancetype)initUserWithDocument:(CBLDocument*)document;
 
 

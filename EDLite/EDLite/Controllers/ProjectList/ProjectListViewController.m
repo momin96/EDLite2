@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem* leftBarButton =[[UIBarButtonItem alloc]initWithTitle:@"logout"
+    UIBarButtonItem* leftBarButton =[[UIBarButtonItem alloc]initWithTitle:@"Logout"
                                                                     style:UIBarButtonItemStylePlain
                                                                    target:self
                                                                    action:@selector(tappedLogoutButton)];
@@ -37,23 +37,15 @@
     [self.navigationItem setLeftBarButtonItem:leftBarButton];
     
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"activeUser"]){
-//        [self reloadProjects];
+        
     }
     else{
         //Present Login View Controller
-        LoginViewController* loginViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        loginViewController.delegate = self;
-        [self presentViewController:loginViewController
-                           animated:YES
-                         completion:nil];
+        [self presentLoginViewController];
     }
     
 }
 
-
--(void)tappedLogoutButton{
-    
-}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -63,9 +55,14 @@
     NSLog(@"ProjectListViewController didReceiveMemoryWarning");
 }
 
--(void)reloadProjects:(NSArray *)projectList{
-    self.projectList =projectList;
-    [self.projectTableView reloadData];
+-(void)prepareConnectionWithUser:(User *)activeUser{
+    NSDictionary* contracts = activeUser.contracts;
+    
+    ConnectionManager* connectionManager = [ConnectionManager sharedConnectionManager];
+    [connectionManager prepareConnectionWithContracts:contracts completionHandler:^(BOOL finished, NSArray *projectList) {
+        self.projectList = projectList;
+        [self.projectTableView reloadData];
+    }];
 }
 
 #pragma mark -- UITableViewDatasource
@@ -77,13 +74,11 @@
     
     static NSString* cellIdentifier = @"ProjectListCell";
     ProjectListCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    cell.indexPath = indexPath;
     Project* project = self.projectList[indexPath.row];
-    cell.project = project;
     
-//    cell.projectNameLabel.text = project.projectName;
-//    UIImage* thumbImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:project.thumbImage]]];
-//    cell.thumbImageView.image = thumbImage;
+    cell.projectNameLabel.text = project.projectName;
+    UIImage* thumbImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:project.thumbImage]]];
+    cell.thumbImageView.image = thumbImage;
 //    ConnectionManager* connectionManager = [ConnectionManager sharedConnectionManager];
 //    EDLConnection* connection = connectionManager.connectionList[indexPath.row];
 //    cell.connection = connection;
@@ -95,5 +90,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
+
+
+-(void)tappedLogoutButton{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"activeUser"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self presentLoginViewController];
+}
+
+-(void)presentLoginViewController{
+    LoginViewController* loginViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    loginViewController.delegate = self;
+    [self presentViewController:loginViewController
+                       animated:YES
+                     completion:nil];
+}
+
+
 
 @end

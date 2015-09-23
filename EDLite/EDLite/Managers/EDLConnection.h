@@ -19,4 +19,7 @@
 @property (nonatomic) CBLDatabase* database;
 
 -(instancetype)initWithProjectInfo:(Project*)projectInfo;
+
+-(instancetype)initUserDocWithDatabaseName:(NSString*)databaseName syncURL:(NSURL*)syncURL;
+
 @end

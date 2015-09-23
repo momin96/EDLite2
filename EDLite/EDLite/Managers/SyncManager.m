@@ -11,7 +11,6 @@
 @interface SyncManager()
 
 
-
 @end
 
 
@@ -19,17 +18,12 @@
 
 -(void)startUserDocReplicationWithDocIDs:(NSArray *)docIDs{
     
-    self.pull = [self.database createPullReplication:self.replicationURL];
-    //    self.push = [self.database createPushReplication:self.replicationURL];
+    CBLReplication* pull = [self.connection.database createPullReplication:self.connection.source];
     
-    NSLog(@"Replication URL [%@]",self.replicationURL);
+    pull.documentIDs = docIDs;
+    pull.continuous = YES;
     
-    self.pull.documentIDs = docIDs;
-    
-    self.pull.continuous = YES;
-    //    self.push.continuous = YES;
-    NSLog(@"pull status [%u]",self.pull.status);
-    
+    self.pull = pull;
     [self startSync];
 }
 
@@ -80,12 +74,12 @@
         _progress = progress;
     }
     
-    if(self.pull.status ==  kCBLReplicationActive)
-        [self.cell showSyncStatus:_progress];
-    else if(self.pull.status == kCBLReplicationStopped)
-        [self.cell stopSync];
-    else if(self.pull.status == kCBLReplicationIdle)
-        [self.cell hideCompletedSync];
+//    if(self.pull.status ==  kCBLReplicationActive)
+//        [self.cell showSyncStatus:_progress];
+//    else if(self.pull.status == kCBLReplicationStopped)
+//        [self.cell stopSync];
+//    else if(self.pull.status == kCBLReplicationIdle)
+//        [self.cell hideCompletedSync];
     
     NSLog(@"SYNC: [%f /%f] pull status : [%u]",completed,total,self.pull.status);
 }
@@ -101,16 +95,6 @@
 //    [self.push start]
 }
 
-
-// Need to cross verify its use.
--(instancetype)initReplicationWithURL:(NSURL*)url
-                             database:(CBLDatabase*)database{
-    if (self = [super init]) {
-        _replicationURL = url;
-        _database = database;
-    }
-    return self;
-}
 
 -(void)dealloc{
     NSLog(@"SyncManager class Deallocated");
