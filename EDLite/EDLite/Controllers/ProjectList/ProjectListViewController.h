@@ -12,4 +12,6 @@
 
 @property (nonatomic) NSArray* projectList;
 
+
+-(void)reloadProjects;
 @end

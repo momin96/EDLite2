@@ -15,14 +15,14 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="9xL-2r-FiZ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1322.5" y="286.5"/>
+            <point key="canvasLocation" x="1330.5" y="1094.5"/>
         </scene>
         <!--Project List View Controller-->
         <scene sceneID="TYa-CM-4xc">
@@ -102,6 +102,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Tzh-3F-1eT"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="projectTableView" destination="D9V-Ah-8Hb" id="i4m-R6-9i0"/>
@@ -109,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ca2-lZ-1De" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1824.5" y="286.5"/>
+            <point key="canvasLocation" x="1556.5" y="270.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hi9-qp-wAg">
@@ -123,12 +124,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="eO2-ue-Rpe"/>
+                        <segue destination="lqp-4K-ebi" kind="relationship" relationship="rootViewController" id="KeL-wC-qre"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Td-Y9-ScU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="627.5" y="286.5"/>
+            <point key="canvasLocation" x="669.5" y="270.5"/>
         </scene>
     </scenes>
 </document>

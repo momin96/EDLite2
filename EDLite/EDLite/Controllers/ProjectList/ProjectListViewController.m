@@ -11,6 +11,7 @@
 #import "User.h"
 #import "Project.h"
 #import "ProjectListCell.h"
+#import "LoginViewController.h"
 @interface ProjectListViewController ()
 
 @property (nonatomic) SyncManager* syncManager;
@@ -22,12 +23,31 @@
 @implementation ProjectListViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];    
+    [super viewDidLoad];
+    
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"activeUser"]){
+//        [self reloadProjects];
+    }
+    else{
+        //Present Login View Controller
+        LoginViewController* loginViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [self presentViewController:loginViewController
+                           animated:YES
+                         completion:nil];
+    }
+    
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     NSLog(@"ProjectListViewController didReceiveMemoryWarning");
+}
+
+-(void)reloadProjects{
+    [self.projectTableView reloadData];
 }
 
 #pragma mark -- UITableViewDatasource
