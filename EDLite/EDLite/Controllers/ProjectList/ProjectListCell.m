@@ -9,7 +9,7 @@
 #import "ProjectListCell.h"
 #import "ConnectionManager.h"
 #import "SyncManager.h"
-
+#import "EDLDataManager.h"
 @interface ProjectListCell()
 @end
 
@@ -40,6 +40,8 @@
             _progressView.progress = connection.syncManager.progress;
             self.activityIndicator.hidden = NO;
             [self.activityIndicator startAnimating];
+            self.noOfMaps.hidden = YES;
+            self.noOfTickets.hidden = YES;
             break;
         case EDLConnectionOffline:
             [self.activityIndicator stopAnimating];
@@ -49,6 +51,7 @@
             [self.activityIndicator stopAnimating];
             self.activityIndicator.hidden = YES;
             // Calculate the number of Tickets and Maps
+            [self countOfTicketAndMapsWithConnection:connection];
         }
             break;
         default:
@@ -56,45 +59,18 @@
     }
 }
 
-//#pragma mark -- Count of Tickets and maps
-//
-//-(NSInteger)countOfTickets{
-//    CBLView* countOfTicketsView = [self.connection.database viewNamed:@"_countOfTicketsView"];
-//    countOfTicketsView.documentType = @"IB.EdBundle.Document.Ticket";
-//    if(!countOfTicketsView.mapBlock){
-//        [countOfTicketsView setMapBlock:MAPBLOCK({
-//            emit(doc[@"_id"],@1);
-//        }) reduceBlock:REDUCEBLOCK({
-//            return  [CBLView totalValues:values];
-//        }) version:@"1.1"];
-//    }
-//    NSError* error;
-//    CBLQuery* query = [countOfTicketsView createQuery];
-//    CBLQueryEnumerator* queryResult =  [query run:&error];
-//    //Debugging
-//    NSLog(@"Ticket pull [%@]: valeu [%@]",self.connection.syncManager.pull,[queryResult rowAtIndex:0].value);
-//    return  [[queryResult rowAtIndex:0].value integerValue];
-//}
-//
-//-(NSInteger)countOfMaps{
-//    CBLView* countOfMapsView = [self.connection.database viewNamed:@"_countOfMapsView"];
-//    countOfMapsView.documentType = @"IB.EdBundle.Document.Map";
-//    if(!countOfMapsView.mapBlock){
-//        [countOfMapsView setMapBlock:MAPBLOCK({
-//            emit(doc[@"_id"],@1);
-//        }) reduceBlock:REDUCEBLOCK({
-//            return [CBLView totalValues:values];
-//        }) version:@"1.0"];
-//    }
-//    NSError* error;
-//    CBLQuery* query = [countOfMapsView createQuery];
-//   CBLQueryEnumerator* queryResult =  [query run:&error];
-//    //Debugging
-//    NSLog(@"Map pull [%@]: value [%@]",self.connection.syncManager.pull,[queryResult rowAtIndex:0].value);
-//    return [[queryResult rowAtIndex:0].value integerValue];
-//}
-//
-//
+-(void)countOfTicketAndMapsWithConnection:(EDLConnection*)connection{
+    EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
+    dataManager.database = connection.database;
+    self.noOfMaps.hidden = NO;
+    self.noOfTickets.hidden = NO;
+    self.noOfTickets.text = [NSString stringWithFormat:@"%ld Tickets",[dataManager countOfTickets]];
+    self.noOfMaps.text = [NSString stringWithFormat:@"%ld Maps",[dataManager countOfMaps]];
+
+}
+
+
+
 //#pragma mark -- Target Action
 //
 //-(IBAction)tappedControlStateButton:(UIButton*)sender{

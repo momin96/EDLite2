@@ -12,6 +12,7 @@
 		5D09CDD01BA2D57F0050BE47 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D09CDCF1BA2D57F0050BE47 /* Project.m */; };
 		5D0C4C7F1BAFD954002E8BE5 /* EDLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0C4C7E1BAFD954002E8BE5 /* EDLConnection.m */; };
 		5D0C4C821BAFDA53002E8BE5 /* EDLContracts.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0C4C811BAFDA53002E8BE5 /* EDLContracts.m */; };
+		5D994B191BB955A8008DC320 /* EDLDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D994B181BB955A8008DC320 /* EDLDataManager.m */; };
 		5DC9E4501BA14CDD000414F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9E44F1BA14CDD000414F4 /* main.m */; };
 		5DC9E4531BA14CDD000414F4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9E4521BA14CDD000414F4 /* AppDelegate.m */; };
 		5DC9E4591BA14CDD000414F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC9E4571BA14CDD000414F4 /* Main.storyboard */; };
@@ -53,6 +54,8 @@
 		5D0C4C7E1BAFD954002E8BE5 /* EDLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EDLConnection.m; path = Managers/EDLConnection.m; sourceTree = "<group>"; };
 		5D0C4C801BAFDA53002E8BE5 /* EDLContracts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDLContracts.h; path = EDLite/Models/EDLContracts.h; sourceTree = "<group>"; };
 		5D0C4C811BAFDA53002E8BE5 /* EDLContracts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EDLContracts.m; path = EDLite/Models/EDLContracts.m; sourceTree = "<group>"; };
+		5D994B171BB955A8008DC320 /* EDLDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDLDataManager.h; path = Managers/EDLDataManager.h; sourceTree = "<group>"; };
+		5D994B181BB955A8008DC320 /* EDLDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EDLDataManager.m; path = Managers/EDLDataManager.m; sourceTree = "<group>"; };
 		5DC9E44A1BA14CDD000414F4 /* EDLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EDLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DC9E44E1BA14CDD000414F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DC9E44F1BA14CDD000414F4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 				5D0C4C7E1BAFD954002E8BE5 /* EDLConnection.m */,
 				5DC9E49C1BA19B59000414F4 /* SyncManager.h */,
 				5DC9E49D1BA19B59000414F4 /* SyncManager.m */,
+				5D994B171BB955A8008DC320 /* EDLDataManager.h */,
+				5D994B181BB955A8008DC320 /* EDLDataManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -372,6 +377,7 @@
 				5D0C4C7F1BAFD954002E8BE5 /* EDLConnection.m in Sources */,
 				5D09CDD01BA2D57F0050BE47 /* Project.m in Sources */,
 				5DC9E49E1BA19B59000414F4 /* SyncManager.m in Sources */,
+				5D994B191BB955A8008DC320 /* EDLDataManager.m in Sources */,
 				5DC9E4751BA14D86000414F4 /* ProjectListViewController.m in Sources */,
 				5DC9E4931BA19141000414F4 /* ConnectionManager.m in Sources */,
 				5DC9E4531BA14CDD000414F4 /* AppDelegate.m in Sources */,
