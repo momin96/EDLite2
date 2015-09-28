@@ -11,17 +11,18 @@
 @class SyncManager;
 @interface EDLConnection : NSObject
 
+@property (nonatomic, assign) EDLConnectionState connectionState;
 @property (nonatomic) Project* projectInfo;
-@property (nonatomic) SyncManager* syncManager;
-
 @property (nonatomic) NSURL* source;
 @property (nonatomic) NSString* target;
 @property (nonatomic) CBLDatabase* database;
-@property (nonatomic, assign) EDLConnectionState connectionState;
+
+@property (nonatomic) SyncManager* syncManager;
 
 @property (nonatomic) CBLReplicationStatus cblStatus;
 
 -(instancetype)initWithProjectInfo:(Project*)projectInfo;
+
 -(instancetype)initUserDocWithDatabaseName:(NSString*)databaseName syncURL:(NSURL*)syncURL;
 
 -(void)updateSyncStatus:(CBLReplicationStatus)status;

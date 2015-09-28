@@ -26,7 +26,10 @@
 
 
 -(void)updateUIForConnection:(EDLConnection *)connection atIndexPath:(NSIndexPath *)indexPath{
-    
+    Project* projectInfo = connection.projectInfo;
+    self.projectNameLabel.text = projectInfo.projectName;
+    UIImage* thumbImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:projectInfo.thumbImage]]];
+    self.thumbImageView.image = thumbImage;
 }
 
 

@@ -82,7 +82,6 @@
 
 }
 
-
 -(void)updateProgress:(NSNotification*)notification{
     EDLConnection* connection = notification.object;
     NSInteger index = [[ConnectionManager sharedConnectionManager].connectionList indexOfObject:connection];
@@ -100,19 +99,10 @@
     
     static NSString* cellIdentifier = @"ProjectListCell";
     ProjectListCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    Project* project = self.projectList[indexPath.row];
-    cell.projectNameLabel.text = project.projectName;
-    UIImage* thumbImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:project.thumbImage]]];
-    cell.thumbImageView.image = thumbImage;
     
     EDLConnection* connection = [[ConnectionManager sharedConnectionManager].connectionList objectAtIndex:indexPath.row];
-    
     [cell updateUIForConnection:connection atIndexPath:indexPath];
     
-//    ConnectionManager* connectionManager = [ConnectionManager sharedConnectionManager];
-//    EDLConnection* connection = connectionManager.connectionList[indexPath.row];
-//    cell.connection = connection;
-
     return cell;
 }
 

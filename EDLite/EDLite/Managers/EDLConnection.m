@@ -29,6 +29,7 @@
     self = [super init];
     if(self){
         _connectionState = EDLConnectionStart;
+        _projectInfo = projectInfo;
         _source = projectInfo.source;
         _target = projectInfo.target;
         _database = [self databaseNameWithTarget:projectInfo.target];
