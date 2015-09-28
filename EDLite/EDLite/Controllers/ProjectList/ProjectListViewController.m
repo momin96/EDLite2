@@ -12,7 +12,7 @@
 #import "Project.h"
 #import "ProjectListCell.h"
 #import "LoginViewController.h"
-@interface ProjectListViewController () <LoginViewControllerDelegate>
+@interface ProjectListViewController () <LoginViewControllerDelegate,ProjectListCellDelegate>
 
 @property (nonatomic) SyncManager* syncManager;
 
@@ -70,7 +70,7 @@
     [connectionManager prepareConnectionWithContracts:contracts completionHandler:^(BOOL finished, NSArray *projectList) {
         self.projectList = projectList;
         [self.projectTableView reloadData];
-        [self initiateSyncConnection];
+//        [self initiateSyncConnection];
     }];
 }
 
@@ -99,7 +99,7 @@
     
     static NSString* cellIdentifier = @"ProjectListCell";
     ProjectListCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
+    cell.projectCellDelegate = self;
     EDLConnection* connection = [[ConnectionManager sharedConnectionManager].connectionList objectAtIndex:indexPath.row];
     [cell updateUIForConnection:connection atIndexPath:indexPath];
     
@@ -111,6 +111,20 @@
     
 }
 
+
+#pragma mark -- UTableViewCellDelegate
+-(EDLConnection*)connectionAtIndexPath:(NSIndexPath *)indexPath{
+     EDLConnection* connection = [[ConnectionManager sharedConnectionManager].connectionList objectAtIndex:indexPath.row];
+    return connection;
+}
+
+-(void)startSyncConnection:(EDLConnection *)connection{
+    [connection startSyncConnection];
+}
+
+-(void)pauseSyncConnection:(EDLConnection *)connection{
+    [connection pauseSyncConnection];
+}
 
 -(void)tappedLogoutButton{
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"activeUser"];

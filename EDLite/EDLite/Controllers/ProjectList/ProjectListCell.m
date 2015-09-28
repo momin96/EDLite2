@@ -26,6 +26,8 @@
 
 
 -(void)updateUIForConnection:(EDLConnection *)connection atIndexPath:(NSIndexPath *)indexPath{
+    self.indexPath = indexPath;
+    
     Project* projectInfo = connection.projectInfo;
     self.projectNameLabel.text = projectInfo.projectName;
     UIImage* thumbImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:projectInfo.thumbImage]]];
@@ -71,27 +73,33 @@
 
 
 
-//#pragma mark -- Target Action
-//
-//-(IBAction)tappedControlStateButton:(UIButton*)sender{
-//    if([sender.titleLabel.text isEqualToString:@"Download"]){
-//        ConnectionManager* connectionManager = [ConnectionManager sharedConnectionManager];
-//        [connectionManager createConnectionForProject:self.project withIndexPath:self.indexPath];
-//        EDLConnection* connection = [connectionManager.connectionDict objectForKey:self.indexPath];
-//        self.connection = connection;
-//        self.connection.syncManager.cell = self;
-//        [self.controlStateButton setTitle:@"Pause" forState:UIControlStateNormal];
-//    }
-//    else{
-//        if (self.connection.syncManager.pull.running) {    // If Pull replication is running and pause button pressed, Update title to Resume
-//            [self.connection.syncManager stopSync];
-//            [self.controlStateButton setTitle:@"Resume" forState:UIControlStateNormal];
-//        }
-//        else{
-//            [self.connection.syncManager startSync];
-//            [self.controlStateButton setTitle:@"Pause" forState:UIControlStateNormal];
-//        }
-//    }
-//}
+#pragma mark -- Target Action
+
+-(IBAction)tappedControlStateButton:(UIButton*)sender{      // need lots of improvement, Have to strictly follow MVC pattern, 
+    
+    EDLConnection* connection = nil;
+    if([_projectCellDelegate respondsToSelector:@selector(connectionAtIndexPath:)])
+       connection = [_projectCellDelegate connectionAtIndexPath:self.indexPath];
+        
+    switch (connection.connectionState) {
+        case EDLConnectionPause:
+        case EDLConnectionStart:
+        case EDLConnectionCompletedOffline:
+        case EDLConnectionOffline:{  //Connection is OFF (Paused) Resume/Start code goes here.
+            [self.controlStateButton setTitle:@"Pause" forState:UIControlStateNormal];
+           if([_projectCellDelegate respondsToSelector:@selector(startSyncConnection:)])
+               [_projectCellDelegate startSyncConnection:connection];
+        }
+            break;
+        case EDLConnectionRunning:{    //Connection is ON, Pause Code goes here
+            [self.controlStateButton setTitle:@"Resume" forState:UIControlStateNormal];
+            if([_projectCellDelegate respondsToSelector:@selector(pauseSyncConnection:)])
+                [_projectCellDelegate pauseSyncConnection:connection];
+        }
+            break;
+        default:
+            break;
+    }
+}
 
 @end

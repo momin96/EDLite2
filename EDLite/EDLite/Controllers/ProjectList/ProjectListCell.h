@@ -7,8 +7,19 @@
 //
 
 
+@protocol ProjectListCellDelegate <NSObject>
+
+@optional
+-(EDLConnection*)connectionAtIndexPath:(NSIndexPath*)indexPath;
+-(void)startSyncConnection:(EDLConnection*)connection;
+-(void)pauseSyncConnection:(EDLConnection*)connection;
+
+@end
+
+
 @interface ProjectListCell : UITableViewCell
 
+@property (weak, nonatomic) id <ProjectListCellDelegate> projectCellDelegate;
 
 @property (weak, nonatomic) IBOutlet UIImageView* thumbImageView;
 @property (weak, nonatomic) IBOutlet UILabel* projectNameLabel;
@@ -18,9 +29,9 @@
 @property (weak, nonatomic) IBOutlet UILabel* noOfMaps;
 @property (weak, nonatomic) IBOutlet UIButton* controlStateButton;
 
+@property (nonatomic) NSIndexPath* indexPath;
+
 -(void)updateUIForConnection:(EDLConnection*)connection atIndexPath:(NSIndexPath*)indexPath;
 -(void)updateProgressForConnection:(EDLConnection*)connection;
-//-(void)showSyncStatus:(float)status;
-//-(void)hideCompletedSync;
-//-(void)stopSync;
+
 @end
