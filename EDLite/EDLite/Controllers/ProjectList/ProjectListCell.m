@@ -25,6 +25,28 @@
 }
 
 
+-(void)updateUIForConnection:(EDLConnection *)connection atIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+
+-(void)updateProgressForConnection:(EDLConnection *)connection{
+    switch (connection.connectionState) {
+        case EDLConnectionRunning:
+            _progressView.hidden = NO;
+            _progressView.progress = connection.syncManager.progress;
+            self.activityIndicator.hidden = NO;
+            [self.activityIndicator startAnimating];
+            break;
+        case EDLConnectionOffline:
+            [self.activityIndicator stopAnimating];
+            self.activityIndicator.hidden = YES;
+            break;
+        default:
+            break;
+    }
+}
+
 //-(void)showSyncStatus:(float)status{
 //    self.progressView.progress = status;
 //    self.activityIndicator.hidden = NO;

@@ -11,6 +11,8 @@
 #define USERS_DATABASE @"ed_users"
 #define USERDOC_PREFIX @"org.couchdb.user:"
 
+#define castIf(CLASSNAME, OBJ)                                                 \
+((CLASSNAME *)([NSObject cast:[CLASSNAME class] forObject:OBJ]))
 
 typedef NS_ENUM(NSInteger, EDLConnectionState) {
     EDLConnectionStart,
@@ -25,3 +27,4 @@ typedef NS_ENUM(NSInteger, EDLConnectionState) {
 
 extern NSString * const EDLContractsUpdateNotification;
 extern NSString * const kEDLConnectionState;
+extern NSString * const EDLSyncStateChangedNotification;

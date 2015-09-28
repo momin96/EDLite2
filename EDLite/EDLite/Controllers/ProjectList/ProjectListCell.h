@@ -18,7 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel* noOfMaps;
 @property (weak, nonatomic) IBOutlet UIButton* controlStateButton;
 
-
+-(void)updateUIForConnection:(EDLConnection*)connection atIndexPath:(NSIndexPath*)indexPath;
+-(void)updateProgressForConnection:(EDLConnection*)connection;
 //-(void)showSyncStatus:(float)status;
 //-(void)hideCompletedSync;
 //-(void)stopSync;

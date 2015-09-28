@@ -42,7 +42,7 @@
     self.pull = pull;
     [self observeReplication:@[self.pull]];
     NSLog(@"pull [%@] and status [%u]",self.pull,self.pull.status);
-    [self startSync];
+//    [self startSync];
 }
 
 -(void)observeReplication:(NSArray*)replications{
@@ -61,10 +61,12 @@
 -(void)replicationProgress:(NSNotificationCenter*)n{
     NSLog(@"pull [%@] and status [%u]",self.pull,self.pull.status);
     // First check whether replication is currently active:
+    CBLReplicationStatus status = kCBLReplicationStopped;
     BOOL active = (self.pull.status == kCBLReplicationActive);
     double total;
     double completed;
     if (active) {
+        status = MAX(status, self.pull.status);
         double progress = 0.0;
         total =  self.pull.changesCount;
         completed = self.pull.completedChangesCount ;
@@ -73,6 +75,7 @@
         }
         _progress = progress;
     }
+    [self.connection updateSyncStatus:status];
     
 //    if(self.pull.status ==  kCBLReplicationActive)
 //        [self.cell showSyncStatus:_progress];

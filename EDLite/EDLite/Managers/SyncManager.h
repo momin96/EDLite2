@@ -15,7 +15,7 @@
 
 @property(nonatomic, readonly) float progress;
 
-@property (nonatomic) EDLConnection* connection;
+@property (nonatomic, weak) EDLConnection* connection;
 
 -(instancetype)initSyncForConnection:(EDLConnection*)connection;
 -(void)startUserDocReplicationWithDocIDs:(NSArray*)docIDs;

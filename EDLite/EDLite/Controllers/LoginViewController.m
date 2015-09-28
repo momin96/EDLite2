@@ -57,7 +57,7 @@
     if(self.activeUser){
         [[NSUserDefaults standardUserDefaults] setObject:self.activeUser.name forKey:@"activeUser"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        [self loadProjectViewController];
+//        [self loadProjectViewController];
     }
 //    else{
 //        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"activeUser"];

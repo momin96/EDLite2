@@ -99,12 +99,13 @@
         }   //end inner for-in loop
     }   //end outer for-in loop
 
+   
+    [self _connectionForProjectList:projectList];
+    
     if([projectList count])
         completionHandler(YES,projectList);
     else
         completionHandler(NO,nil);
-
-    [self _connectionForProjectList:projectList];
 }
 
 -(void)_connectionForProjectList:(NSArray*)projectList{
@@ -116,4 +117,16 @@
         [self.connectionList addObject:connection];
     }
 }
+
+
+-(void)observeValueForKeyPath:(NSString *)keyPath
+                     ofObject:(id)object
+                       change:(NSDictionary *)change
+                      context:(void *)context{
+    if([keyPath isEqualToString:kEDLConnectionState]){
+        EDLConnection* conn= object;
+        [[NSNotificationCenter defaultCenter ] postNotificationName:EDLSyncStateChangedNotification object:conn];
+    }
+}
+
 @end
