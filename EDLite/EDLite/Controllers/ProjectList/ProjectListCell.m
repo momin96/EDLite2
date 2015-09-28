@@ -42,42 +42,17 @@
             [self.activityIndicator stopAnimating];
             self.activityIndicator.hidden = YES;
             break;
+        case EDLConnectionCompleted:{
+            [self.activityIndicator stopAnimating];
+            self.activityIndicator.hidden = YES;
+            // Calculate the number of Tickets and Maps
+        }
+            break;
         default:
             break;
     }
 }
 
-//-(void)showSyncStatus:(float)status{
-//    self.progressView.progress = status;
-//    self.activityIndicator.hidden = NO;
-//    [self.activityIndicator startAnimating];
-//    self.noOfMaps.hidden = YES;
-//    self.noOfTickets.hidden = YES;
-//    self.controlStateButton.hidden = NO;   //If pull Replication is strated of in running, don't hide.
-//    
-//}
-//
-//-(void)hideCompletedSync{
-//    [self.activityIndicator stopAnimating];
-//    self.activityIndicator.hidden = YES;
-//    
-//    self.noOfMaps.hidden = NO;
-//    self.noOfTickets.hidden = NO;
-//    
-//    self.controlStateButton.hidden = YES; //If Pull replication Completed then no need to show pause/resume button, just hide it.
-//    self.noOfMaps.text = [NSString stringWithFormat:@"%lu Maps",(unsigned long)[self countOfMaps]];
-//    self.noOfTickets.text = [NSString stringWithFormat:@"%lu Tickets",(unsigned long)[self countOfTickets]];
-//    [self.progressView setProgressViewStyle:UIProgressViewStyleDefault];
-//}
-//
-//-(void)stopSync{
-//    [self.activityIndicator stopAnimating];
-//    self.activityIndicator.hidden = YES;
-//    self.noOfMaps.hidden = YES;
-//    self.noOfTickets.hidden = YES;
-//    self.controlStateButton.hidden = NO;
-//}
-//
 //#pragma mark -- Count of Tickets and maps
 //
 //-(NSInteger)countOfTickets{
