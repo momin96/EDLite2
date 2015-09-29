@@ -23,4 +23,13 @@
 @property(nonatomic, strong) NSString *project;
 @property(nonatomic, strong) NSDictionary *state;
 @property(nonatomic, strong) NSArray *timeline;
+
+
+
+
+
+-(NSString *)humanId;
+- (NSString *)title;
+- (NSString *)body;
+- (NSString *)status;
 @end

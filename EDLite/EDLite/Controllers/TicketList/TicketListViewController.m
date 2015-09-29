@@ -9,7 +9,7 @@
 #import "TicketListViewController.h"
 #import "TicketListCell.h"
 #import "Ticket.h"
-@interface TicketListViewController ()
+@interface TicketListViewController () <UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView* ticketTableView;
 @property (nonatomic) NSArray* documentList;
 @end
@@ -62,12 +62,17 @@
 #pragma mark -- UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
+    return [self.documentList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString* cellIdentifier =  @"TicketListCell";
     TicketListCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    Ticket* ticket = self.documentList[indexPath.row];
+    cell.ticketIDLabel.text = [ticket humanId];
+    cell.ticketTitleLabel.text = [ticket title];
+    cell.ticketDescriptionLabel.text = [ticket body];
+    cell.ticketStatuslabel.text = [ticket status];
     return cell;
 }
 @end
