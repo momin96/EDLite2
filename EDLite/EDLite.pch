@@ -19,4 +19,5 @@
 #import "ConnectionManager.h"
 #import "SyncManager.h"
 #import "EDLDataManager.h"
+#import "EDLViews.h"
 #endif

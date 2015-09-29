@@ -15,6 +15,7 @@
 		5D22E1661BBA5946004664ED /* TicketListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D22E1651BBA5946004664ED /* TicketListCell.m */; };
 		5D22E1691BBA5964004664ED /* TicketListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D22E1681BBA5964004664ED /* TicketListViewController.m */; };
 		5D994B191BB955A8008DC320 /* EDLDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D994B181BB955A8008DC320 /* EDLDataManager.m */; };
+		5DC397561BBAD1B900F2C732 /* EDLViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC397551BBAD1B900F2C732 /* EDLViews.m */; };
 		5DC9E4501BA14CDD000414F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9E44F1BA14CDD000414F4 /* main.m */; };
 		5DC9E4531BA14CDD000414F4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9E4521BA14CDD000414F4 /* AppDelegate.m */; };
 		5DC9E4591BA14CDD000414F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC9E4571BA14CDD000414F4 /* Main.storyboard */; };
@@ -62,6 +63,8 @@
 		5D22E1681BBA5964004664ED /* TicketListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketListViewController.m; path = Controllers/TicketList/TicketListViewController.m; sourceTree = "<group>"; };
 		5D994B171BB955A8008DC320 /* EDLDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDLDataManager.h; path = Managers/EDLDataManager.h; sourceTree = "<group>"; };
 		5D994B181BB955A8008DC320 /* EDLDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EDLDataManager.m; path = Managers/EDLDataManager.m; sourceTree = "<group>"; };
+		5DC397541BBAD1B900F2C732 /* EDLViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDLViews.h; path = Managers/CBL/EDLViews.h; sourceTree = "<group>"; };
+		5DC397551BBAD1B900F2C732 /* EDLViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EDLViews.m; path = Managers/CBL/EDLViews.m; sourceTree = "<group>"; };
 		5DC9E44A1BA14CDD000414F4 /* EDLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EDLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DC9E44E1BA14CDD000414F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DC9E44F1BA14CDD000414F4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -147,6 +150,15 @@
 				5DFAC5541BA41F9A00811BA5 /* LoginViewController.m */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		5DC397571BBAD1BD00F2C732 /* CBL */ = {
+			isa = PBXGroup;
+			children = (
+				5DC397541BBAD1B900F2C732 /* EDLViews.h */,
+				5DC397551BBAD1B900F2C732 /* EDLViews.m */,
+			);
+			name = CBL;
 			sourceTree = "<group>";
 		};
 		5DC9E4411BA14CDD000414F4 = {
@@ -275,6 +287,7 @@
 				5DC9E49D1BA19B59000414F4 /* SyncManager.m */,
 				5D994B171BB955A8008DC320 /* EDLDataManager.h */,
 				5D994B181BB955A8008DC320 /* EDLDataManager.m */,
+				5DC397571BBAD1BD00F2C732 /* CBL */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -408,6 +421,7 @@
 				5DC9E47C1BA14EBC000414F4 /* CRLoadingView.m in Sources */,
 				5D09CDCD1BA2D2FB0050BE47 /* User.m in Sources */,
 				5D0C4C821BAFDA53002E8BE5 /* EDLContracts.m in Sources */,
+				5DC397561BBAD1B900F2C732 /* EDLViews.m in Sources */,
 				5D22E1661BBA5946004664ED /* TicketListCell.m in Sources */,
 				5D0C4C7F1BAFD954002E8BE5 /* EDLConnection.m in Sources */,
 				5D09CDD01BA2D57F0050BE47 /* Project.m in Sources */,
