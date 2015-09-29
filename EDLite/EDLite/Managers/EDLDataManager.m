@@ -74,6 +74,8 @@
     }
     return documentList;
 }
+
+
 -(NSArray*)completedTicketListView:(CBLDatabase*)database{
     CBLView* completedTicketListView = [database viewNamed:@"_completedTicketListView"];
     completedTicketListView.documentType = kTicketType;

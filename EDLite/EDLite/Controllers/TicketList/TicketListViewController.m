@@ -10,17 +10,26 @@
 #import "TicketListCell.h"
 #import "Ticket.h"
 @interface TicketListViewController ()
+
 @property (weak, nonatomic) IBOutlet UITableView* ticketTableView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl* segmentedControlButton;
-
-
 @property (nonatomic) NSArray* documentList;
+
 @end
 
 @implementation TicketListViewController
 
+-(void)navigationView{
+    UIBarButtonItem* rightBarButton =[[UIBarButtonItem alloc]initWithTitle:@"+"
+                                                                    style:UIBarButtonItemStylePlain
+                                                                   target:self
+                                                                   action:@selector(tappedNewTicketButton)];
+    
+    [self.navigationItem setRightBarButtonItem:rightBarButton];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self navigationView];
     [CRLoadingView loadingViewInView:self.view Title:@"Loading Tickets"];
     
     [self downloadActiveTicketsWithCompletionHandler:^(NSArray* documentList) {
@@ -70,6 +79,8 @@
     return cell;
 }
 
+#pragma mark -- Target/Action
+
 -(IBAction)tappedSegmentedControl:(UISegmentedControl *)sender {
     
     if(sender.selectedSegmentIndex == 0){//Active
@@ -81,7 +92,6 @@
             [self.ticketTableView reloadData];
         }];
     }
-    
     else if (sender.selectedSegmentIndex == 1){//Completed
         [CRLoadingView loadingViewInView:self.view Title:@"Loading Completed Ticket"];
 
@@ -94,6 +104,8 @@
     }
 }
 
-
+-(void)tappedNewTicketButton{
+    
+}
 
 @end
