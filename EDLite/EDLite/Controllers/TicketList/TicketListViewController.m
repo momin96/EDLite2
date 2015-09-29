@@ -11,6 +11,9 @@
 #import "Ticket.h"
 @interface TicketListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView* ticketTableView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl* segmentedControlButton;
+
+
 @property (nonatomic) NSArray* documentList;
 @end
 
@@ -20,7 +23,7 @@
     [super viewDidLoad];
     [CRLoadingView loadingViewInView:self.view Title:@"Loading Tickets"];
     
-    [self downloadTicketsWithCompletionHandler:^(NSArray* documentList) {
+    [self downloadActiveTicketsWithCompletionHandler:^(NSArray* documentList) {
         if(documentList){
             self.documentList = documentList;
             [CRLoadingView removeView];
@@ -33,10 +36,18 @@
     [super didReceiveMemoryWarning];
 }
 
--(void)downloadTicketsWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
+-(void)downloadActiveTicketsWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
     
     EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
-    NSArray* documentList = [dataManager ticketListView:self.connection.database];
+    NSArray* documentList = [dataManager activeTicketListView:self.connection.database];
+    if (documentList) {
+        CompletionHandler(documentList);
+    }
+}
+
+-(void)downloadCompletedTicketsWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
+    EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
+    NSArray* documentList = [dataManager completedTicketListView:self.connection.database];
     if (documentList) {
         CompletionHandler(documentList);
     }
@@ -58,4 +69,31 @@
     cell.ticketStatuslabel.text = [ticket status];
     return cell;
 }
+
+-(IBAction)tappedSegmentedControl:(UISegmentedControl *)sender {
+    
+    if(sender.selectedSegmentIndex == 0){//Active
+        [CRLoadingView loadingViewInView:self.view Title:@"Loading Active Ticket"];
+        [self downloadActiveTicketsWithCompletionHandler:^(NSArray *documentList) {
+            self.documentList = nil;
+            self.documentList = documentList;
+            [CRLoadingView removeView];
+            [self.ticketTableView reloadData];
+        }];
+    }
+    
+    else if (sender.selectedSegmentIndex == 1){//Completed
+        [CRLoadingView loadingViewInView:self.view Title:@"Loading Completed Ticket"];
+
+        [self downloadCompletedTicketsWithCompletionHandler:^(NSArray *documentList) {
+            self.documentList = nil;
+            self.documentList = documentList;
+            [CRLoadingView removeView];
+            [self.ticketTableView reloadData];
+        }];
+    }
+}
+
+
+
 @end

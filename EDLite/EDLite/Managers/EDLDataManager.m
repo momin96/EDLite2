@@ -50,24 +50,51 @@
     return [[queryResult rowAtIndex:0].value integerValue];
 }
 
--(NSArray*)ticketListView:(CBLDatabase*)database{
-    CBLView* ticketListView = [database viewNamed:@"_ticketListView"];
-    ticketListView.documentType = kTicketType;
-    if(!ticketListView.mapBlock){
-        [ticketListView setMapBlock:MAPBLOCK({
-            emit(doc[@"_id"],doc[@"_id"]);
-        }) version:@"1.0"];
+-(NSArray*)activeTicketListView:(CBLDatabase*)database{
+    CBLView* activeTicketListView = [database viewNamed:@"_activeTicketListView"];
+    activeTicketListView.documentType = kTicketType;
+    if(!activeTicketListView.mapBlock){
+        [activeTicketListView setMapBlock:MAPBLOCK({
+            
+            BOOL isArchived = doc[@"archived"] != [NSNull null];
+            BOOL nonCompleted = ![[doc[@"state"][@"state"] lowercaseString] isEqualToString:@"completed"];
+            
+            if(isArchived && nonCompleted)
+                emit(doc[@"_id"],doc[@"_id"]);
+            
+        }) version:@"1.3"];
     }
     NSMutableArray* documentList = [[NSMutableArray alloc]init];
-    CBLQuery* query = [ticketListView createQuery];
+    CBLQuery* query = [activeTicketListView createQuery];
     NSError * error;
     CBLQueryEnumerator * queryResult = [query run:&error];
     for (CBLQueryRow* row in queryResult) {
         Ticket* ticket = [Ticket modelForDocument:row.document];
         [documentList addObject:ticket];
     }
-    
     return documentList;
 }
-
+-(NSArray*)completedTicketListView:(CBLDatabase*)database{
+    CBLView* completedTicketListView = [database viewNamed:@"_completedTicketListView"];
+    completedTicketListView.documentType = kTicketType;
+    if(!completedTicketListView.mapBlock){
+        [completedTicketListView setMapBlock:MAPBLOCK({
+            
+            BOOL isCompleted = [[doc[@"state"][@"state"] lowercaseString] isEqualToString:@"completed"];
+            
+            if(isCompleted)
+                emit(doc[@"_id"],doc[@"_id"]);
+            
+        }) version:@"1.2"];
+    }
+    NSMutableArray* documentList = [[NSMutableArray alloc]init];
+    CBLQuery* query = [completedTicketListView createQuery];
+    NSError * error;
+    CBLQueryEnumerator * queryResult = [query run:&error];
+    for (CBLQueryRow* row in queryResult) {
+        Ticket* ticket = [Ticket modelForDocument:row.document];
+        [documentList addObject:ticket];
+    }
+    return documentList;
+}
 @end

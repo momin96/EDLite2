@@ -17,6 +17,7 @@
 -(NSInteger)countOfTickets;
 -(NSInteger)countOfMaps;
 
--(NSArray*)ticketListView:(CBLDatabase*)database;
+-(NSArray*)activeTicketListView:(CBLDatabase*)database;
+-(NSArray*)completedTicketListView:(CBLDatabase*)database;
 
 @end

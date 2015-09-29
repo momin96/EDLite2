@@ -130,6 +130,9 @@
                                     <segment title="Active"/>
                                     <segment title="Completed"/>
                                 </segments>
+                                <connections>
+                                    <action selector="tappedSegmentedControl:" destination="tDX-dA-LpD" eventType="valueChanged" id="dam-4F-EV3"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bxj-Up-de3">
                                 <rect key="frame" x="0.0" y="105" width="375" height="562"/>
