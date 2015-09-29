@@ -8,8 +8,10 @@
 
 #import "TicketListViewController.h"
 #import "TicketListCell.h"
+#import "Ticket.h"
 @interface TicketListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView* ticketTableView;
+@property (nonatomic) NSArray* documentList;
 @end
 
 @implementation TicketListViewController
@@ -18,8 +20,12 @@
     [super viewDidLoad];
     [CRLoadingView loadingViewInView:self.view Title:@"Loading Tickets"];
     
-    [self downloadTicketsWithCompletionHandler:^(BOOL finished) {
-        
+    [self downloadTicketsWithCompletionHandler:^(NSArray* documentList) {
+        if(documentList){
+            self.documentList = documentList;
+            [CRLoadingView removeView];
+            [self.ticketTableView reloadData];
+        }
     }];
 }
 
@@ -27,7 +33,29 @@
     [super didReceiveMemoryWarning];
 }
 
--(void)downloadTicketsWithCompletionHandler:(void(^)(BOOL finished))CompletionHandler{
+-(void)downloadTicketsWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
+    CBLDatabase* database = self.connection.database;
+    
+    CBLView* ticketListView = [database viewNamed:@"_ticketListView"];
+    ticketListView.documentType = kTicketType;
+    if(!ticketListView.mapBlock){
+        [ticketListView setMapBlock:MAPBLOCK({
+            emit(doc[@"_id"],doc[@"_id"]);
+        }) version:@"1.0"];
+    }
+    NSMutableArray* documentList = [[NSMutableArray alloc]init];
+    CBLQuery* query = [ticketListView createQuery];
+    [query runAsync:^(CBLQueryEnumerator * queryResult, NSError * error) {
+        if(!error){
+            for (CBLQueryRow* row in queryResult) {
+                Ticket* ticket = [Ticket modelForDocument:row.document];
+                [documentList addObject:ticket];
+            }
+        }
+    }];
+    if (documentList) {
+        CompletionHandler(documentList);
+    }
     
 }
 

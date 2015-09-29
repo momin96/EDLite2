@@ -11,3 +11,7 @@
 NSString *const EDLContractsUpdateNotification = @"ContractsUpdateNotification";
 NSString *const kEDLConnectionState = @"connectionState";
 NSString *const EDLSyncStateChangedNotification = @"SyncManagerStateChangedAndUpdateConnectionUINotification";
+
+
+NSString* const kTicketType = @"IB.EdBundle.Document.Ticket";
+NSString* const kMapType = @"IB.EdBundle.Document.Map";
