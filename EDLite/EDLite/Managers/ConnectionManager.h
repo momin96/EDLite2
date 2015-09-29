@@ -12,7 +12,6 @@
 
 @property (nonatomic) CBLManager* manager;
 @property (nonatomic) CBLDatabase* database;
-//@property (nonatomic) NSMutableDictionary* connectionDict;
 
 @property (nonatomic) NSMutableArray* connectionList;
 

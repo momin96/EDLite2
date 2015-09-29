@@ -16,11 +16,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [CRLoadingView loadingViewInView:self.view Title:@"Loading Tickets"];
+    
+    [self downloadTicketsWithCompletionHandler:^(BOOL finished) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+-(void)downloadTicketsWithCompletionHandler:(void(^)(BOOL finished))CompletionHandler{
+    
+}
+
+#pragma mark -- UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 0;

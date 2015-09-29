@@ -19,6 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView* projectTableView;
 @property (nonatomic) TicketListViewController* ticketListViewController;
+@property (nonatomic) User* activeUser;
 @end
 
 @implementation ProjectListViewController
@@ -36,12 +37,12 @@
                                                                    action:@selector(tappedLogoutButton)];
     
     [self.navigationItem setLeftBarButtonItem:leftBarButton];
-    
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"activeUser"]){
-        
+    NSData* encodedData =[[NSUserDefaults standardUserDefaults] objectForKey:@"activeUser"];
+    NSDictionary* contracts = [NSKeyedUnarchiver unarchiveObjectWithData:encodedData];
+    if(contracts){
+        [self downloadContracts:contracts];
     }
     else{
-        //Present Login View Controller
         [self presentLoginViewController];
     }
     
@@ -65,13 +66,16 @@
 }
 
 -(void)prepareConnectionWithUser:(User *)activeUser{
-    NSDictionary* contracts = activeUser.contracts;
-    
+    self.activeUser = activeUser;
+    [self downloadContracts: activeUser.contracts];
+}
+
+-(void)downloadContracts:(NSDictionary*)contracts{
     ConnectionManager* connectionManager = [ConnectionManager sharedConnectionManager];
     [connectionManager prepareConnectionWithContracts:contracts completionHandler:^(BOOL finished, NSArray *projectList) {
         self.projectList = projectList;
         [self.projectTableView reloadData];
-//        [self initiateSyncConnection];
+        //        [self initiateSyncConnection];
     }];
 }
 

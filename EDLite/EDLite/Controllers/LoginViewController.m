@@ -54,18 +54,8 @@
     ConnectionManager* connectionManager = [ConnectionManager sharedConnectionManager];
     CBLDocument* userDocID = [connectionManager replicateUserDocWithDocID:docID];
     self.activeUser = [[User alloc] initUserWithDocument:userDocID];
-    if(self.activeUser){
-        [[NSUserDefaults standardUserDefaults] setObject:self.activeUser.name forKey:@"activeUser"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-//        [self loadProjectViewController];
-    }
-//    else{
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"activeUser"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//    }
-    
-
-
+    if(self.activeUser)
+       [self loadProjectViewController];
 }
 
 -(void)loadProjectViewController{
@@ -74,8 +64,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)downloadContractsNotification:(NSNotificationCenter*)notification{
-//    self.currentUser.contracts = notification.userInfo;
+-(void)downloadContractsNotification:(NSNotification*)notification{
+    self.activeUser.contracts = notification.userInfo;
+    //Need to archive data because NSUserDefault cannot store custom objects
+    NSData* encodedData = [NSKeyedArchiver archivedDataWithRootObject:self.activeUser.contracts];
+    [[NSUserDefaults standardUserDefaults] setObject:encodedData forKey:@"activeUser"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     [self loadProjectViewController];
 }
 
