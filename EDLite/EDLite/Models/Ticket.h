@@ -26,7 +26,7 @@
 
 
 
-
+@property (nonatomic) CBLDatabase* database;
 
 -(NSString *)humanId;
 - (NSString *)title;

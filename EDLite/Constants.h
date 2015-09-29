@@ -30,3 +30,4 @@ extern NSString * const kEDLConnectionState;
 extern NSString * const EDLSyncStateChangedNotification;
 extern NSString* const kTicketType;
 extern NSString* const kMapType;
+extern NSString* const kProjectDocumentType;
