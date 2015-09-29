@@ -18,4 +18,5 @@
 #import "Constants.h"
 #import "ConnectionManager.h"
 #import "SyncManager.h"
+#import "EDLDataManager.h"
 #endif

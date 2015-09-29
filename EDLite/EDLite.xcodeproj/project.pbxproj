@@ -140,6 +140,15 @@
 			name = "Ticket Cell";
 			sourceTree = "<group>";
 		};
+		5DC397531BBA967C00F2C732 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5DFAC5531BA41F9A00811BA5 /* LoginViewController.h */,
+				5DFAC5541BA41F9A00811BA5 /* LoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		5DC9E4411BA14CDD000414F4 = {
 			isa = PBXGroup;
 			children = (
@@ -209,8 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				5DC9E4771BA14D99000414F4 /* ProjectList */,
-				5DFAC5531BA41F9A00811BA5 /* LoginViewController.h */,
-				5DFAC5541BA41F9A00811BA5 /* LoginViewController.m */,
+				5DC397531BBA967C00F2C732 /* Login */,
 				5D22E1631BBA5917004664ED /* TicketList */,
 			);
 			name = Controllers;

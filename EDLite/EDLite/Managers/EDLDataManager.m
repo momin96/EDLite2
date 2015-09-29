@@ -7,7 +7,7 @@
 //
 
 #import "EDLDataManager.h"
-
+#import "Ticket.h"
 @implementation EDLDataManager
 
 +(EDLDataManager*)sharedDataManager{
@@ -48,6 +48,26 @@
     CBLQuery* query = [countOfMapsView createQuery];
     CBLQueryEnumerator* queryResult =  [query run:&error];
     return [[queryResult rowAtIndex:0].value integerValue];
+}
+
+-(NSArray*)ticketListView:(CBLDatabase*)database{
+    CBLView* ticketListView = [database viewNamed:@"_ticketListView"];
+    ticketListView.documentType = kTicketType;
+    if(!ticketListView.mapBlock){
+        [ticketListView setMapBlock:MAPBLOCK({
+            emit(doc[@"_id"],doc[@"_id"]);
+        }) version:@"1.0"];
+    }
+    NSMutableArray* documentList = [[NSMutableArray alloc]init];
+    CBLQuery* query = [ticketListView createQuery];
+    NSError * error;
+    CBLQueryEnumerator * queryResult = [query run:&error];
+    for (CBLQueryRow* row in queryResult) {
+        Ticket* ticket = [Ticket modelForDocument:row.document];
+        [documentList addObject:ticket];
+    }
+    
+    return documentList;
 }
 
 @end

@@ -17,11 +17,11 @@
 #pragma mark - Properties Helper
 
 - (NSString *)title {
-    return self.content[@"title"];
+    return [self.content[@"title"] isEqualToString:@""] ? @"N/A": self.content[@"title"];
 }
 
 - (NSString *)body {
-    return self.content[@"body"];
+    return [self.content[@"body"] isEqualToString:@""] ? @"N/A" : self.content[@"body"];
 }
 
 #pragma mark - Status
