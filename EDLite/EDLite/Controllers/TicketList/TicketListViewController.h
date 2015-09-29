@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TicketListViewController : UIViewController
-@property (nonatomic) Project* project;
+@property (nonatomic) EDLConnection* connection;
 @end
