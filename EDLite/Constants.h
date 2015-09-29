@@ -28,5 +28,3 @@ typedef NS_ENUM(NSInteger, EDLConnectionState) {
 extern NSString * const EDLContractsUpdateNotification;
 extern NSString * const kEDLConnectionState;
 extern NSString * const EDLSyncStateChangedNotification;
-NSString* const kTicketType;
-NSString* const kMapType;

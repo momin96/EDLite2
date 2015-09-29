@@ -9,7 +9,5 @@
 #import "Ticket.h"
 
 @implementation Ticket
-//Persistant CBL model
-@dynamic _id,_rev,doctrine_metadata,archived,content,dates,location,map,participants,plan,project,state,timeline;
 
 @end

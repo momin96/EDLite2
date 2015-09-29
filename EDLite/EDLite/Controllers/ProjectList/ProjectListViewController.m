@@ -115,7 +115,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    EDLConnection* connection = [[ConnectionManager sharedConnectionManager].connectionList objectAtIndex:indexPath.row];
     self.ticketListViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"TicketListViewController"];
-    self.ticketListViewController.connection =  connection;
+    self.ticketListViewController.project =  connection.projectInfo;
     [self.navigationController pushViewController:self.ticketListViewController animated:YES];
 }
 

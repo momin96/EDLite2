@@ -20,7 +20,7 @@
 
 -(NSInteger)countOfTickets{
     CBLView* countOfTicketsView = [self.database viewNamed:@"_countOfTicketsView"];
-    countOfTicketsView.documentType = kTicketType;
+    countOfTicketsView.documentType = @"IB.EdBundle.Document.Ticket";
     if(!countOfTicketsView.mapBlock){
         [countOfTicketsView setMapBlock:MAPBLOCK({
             emit(doc[@"_id"],@1);
@@ -36,7 +36,7 @@
 }
 -(NSInteger)countOfMaps{
     CBLView* countOfMapsView = [self.database viewNamed:@"_countOfMapsView"];
-    countOfMapsView.documentType = kMapType;
+    countOfMapsView.documentType = @"IB.EdBundle.Document.Map";
     if(!countOfMapsView.mapBlock){
         [countOfMapsView setMapBlock:MAPBLOCK({
             emit(doc[@"_id"],@1);
