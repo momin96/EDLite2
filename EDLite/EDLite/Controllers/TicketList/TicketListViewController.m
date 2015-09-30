@@ -32,8 +32,6 @@
     [self navigationView];
     [CRLoadingView loadingViewInView:self.view Title:@"Loading Tickets"];
     
-    
-
     [self showActiveTicketsWithCompletionHandler:^(NSArray* documentList) {
         if(documentList){
             self.documentList = documentList;
@@ -62,14 +60,6 @@
     }
 }
 
-//-(void)downloadCompletedTicketsWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
-//    EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
-//    NSArray* documentList = [dataManager completedTicketListView:self.connection.database];
-//    if (documentList) {
-//        CompletionHandler(documentList);
-//    }
-//}
-
 #pragma mark -- UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -84,6 +74,7 @@
     cell.ticketTitleLabel.text = [ticket title];
     cell.ticketDescriptionLabel.text = [ticket body];
     cell.ticketStatuslabel.text = [ticket status];
+    cell.ticketArchivedLabel.text = [ticket getArchivedValue];
     return cell;
 }
 

@@ -105,6 +105,9 @@
     return [self.content[@"body"] isEqualToString:@""] ? @"N/A" : self.content[@"body"];
 }
 
+-(NSString*)getArchivedValue{
+    return self.archived ? kArchivedKey : kUnarchivedKey;
+}
 #pragma mark - Status
 
 - (NSString *)status {

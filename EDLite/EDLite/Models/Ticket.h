@@ -31,4 +31,5 @@
 - (NSString *)title;
 - (NSString *)body;
 - (NSString *)status;
+-(NSString*)getArchivedValue;
 @end

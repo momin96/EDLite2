@@ -13,5 +13,5 @@
 @property (weak, nonatomic)IBOutlet UILabel* ticketTitleLabel;
 @property (weak, nonatomic)IBOutlet UILabel* ticketDescriptionLabel;
 @property (weak, nonatomic)IBOutlet UILabel* ticketStatuslabel;
-
+@property (weak, nonatomic)IBOutlet UILabel* ticketArchivedLabel;
 @end

@@ -167,9 +167,16 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="unArchived" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9MK-cC-Hxh">
+                                                    <rect key="frame" x="261" y="54" width="87" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="ticketArchivedLabel" destination="9MK-cC-Hxh" id="R3Z-Jo-iPx"/>
                                             <outlet property="ticketDescriptionLabel" destination="OJh-Ip-boo" id="hoY-8g-1y9"/>
                                             <outlet property="ticketIDLabel" destination="9ff-sh-fBc" id="Za7-03-Y40"/>
                                             <outlet property="ticketStatuslabel" destination="rxY-jP-fdr" id="Vw9-Ez-de7"/>
