@@ -33,3 +33,9 @@ extern NSString* const kMapType;
 extern NSString* const kProjectDocumentType;
 extern NSString *const kArchivedKey;
 extern NSString *const kUnarchivedKey;
+
+extern NSString* const kCompletedStatus;
+extern NSString* const kStartedStatus;
+extern NSString* const kCreatedStatus;
+
+

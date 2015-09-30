@@ -9,9 +9,6 @@
 
 @interface EDLViews : NSObject
 
-+(CBLView*)activeTicketListView:(CBLDatabase*)database;
-
-+(CBLView*)completedTicketListView:(CBLDatabase*)database;
 
 +(CBLView*)countOfMapsView:(CBLDatabase*)database;
 

@@ -19,3 +19,6 @@ NSString* const kProjectDocumentType = @"IB.EdBundle.Document.Project";
 NSString *const kArchivedKey=@"archive";
 NSString *const kUnarchivedKey=@"unarchive";
 
+NSString* const kCompletedStatus=@"completed";
+NSString* const kStartedStatus=@"started";
+NSString* const kCreatedStatus=@"created";

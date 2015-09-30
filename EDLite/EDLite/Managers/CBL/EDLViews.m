@@ -10,38 +10,6 @@
 
 @implementation EDLViews
 
-+(CBLView*)activeTicketListView:(CBLDatabase*)database{
-    CBLView* activeTicketListView = [database viewNamed:@"_activeTicketListView"];
-    activeTicketListView.documentType = kTicketType;
-    if(!activeTicketListView.mapBlock){
-        [activeTicketListView setMapBlock:MAPBLOCK({
-            
-            BOOL isArchived = doc[@"archived"] != [NSNull null];
-            BOOL nonCompleted = ![[doc[@"state"][@"state"] lowercaseString] isEqualToString:@"completed"];
-            
-            if(isArchived && nonCompleted)
-                emit(doc[@"_id"],doc[@"_id"]);
-            
-        }) version:@"1.3"];
-    }
-    return activeTicketListView;
-}
-
-+(CBLView*)completedTicketListView:(CBLDatabase*)database{
-    CBLView* completedTicketListView = [database viewNamed:@"_completedTicketListView"];
-    completedTicketListView.documentType = kTicketType;
-    if(!completedTicketListView.mapBlock){
-        [completedTicketListView setMapBlock:MAPBLOCK({
-            
-            BOOL isCompleted = [[doc[@"state"][@"state"] lowercaseString] isEqualToString:@"completed"];
-            
-            if(isCompleted)
-                emit(doc[@"_id"],doc[@"_id"]);
-            
-        }) version:@"1.2"];
-    }
-    return completedTicketListView;
-}
 
 +(CBLView*)countOfMapsView:(CBLDatabase*)database{
     CBLView* countOfMapsView = [database viewNamed:@"_countOfMapsView"];
@@ -86,6 +54,8 @@
         [completedArchivedTicketView setMapBlock:MAPBLOCK({
             
             NSString* archived = (doc[@"archived"] == [NSNull null]) ? kUnarchivedKey :  kArchivedKey ;
+//            NSString* status = [doc[@"state"][@"state"] isEqualToString:kCompletedStatus] ? :kCompletedStatus;
+            
             emit(archived,doc[@"state"][@"state"]);
             
         }) version:@"1.1"];

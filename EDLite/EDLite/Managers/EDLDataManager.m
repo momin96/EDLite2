@@ -36,36 +36,7 @@
     return [[queryResult rowAtIndex:0].value integerValue];
 }
 
--(NSArray*)activeTicketListView:(CBLDatabase*)database{
-    NSMutableArray* documentList = [[NSMutableArray alloc]init];
 
-    CBLView* activeTicketListView = [EDLViews activeTicketListView:database];
-    
-    CBLQuery* query = [activeTicketListView createQuery];
-    NSError * error;
-    CBLQueryEnumerator * queryResult = [query run:&error];
-    for (CBLQueryRow* row in queryResult) {
-        Ticket* ticket = [Ticket modelForDocument:row.document];
-        [documentList addObject:ticket];
-    }
-    return documentList;
-}
-
-
--(NSArray*)completedTicketListView:(CBLDatabase*)database{
-    NSMutableArray* documentList = [[NSMutableArray alloc]init];
-    
-    CBLView* completedTicketListView = [EDLViews completedTicketListView:database];
-    
-    CBLQuery* query = [completedTicketListView createQuery];
-    NSError * error;
-    CBLQueryEnumerator * queryResult = [query run:&error];
-    for (CBLQueryRow* row in queryResult) {
-        Ticket* ticket = [Ticket modelForDocument:row.document];
-        [documentList addObject:ticket];
-    }
-    return documentList;
-}
 
 -(NSString*)projectDocumentID:(CBLDatabase*)database{
     CBLView* typeProjectView = [EDLViews typeProjectView:database];
@@ -78,23 +49,26 @@
 }
 
 -(NSArray*)completedArchivedTicketListView:(BOOL)archivedCompleted inDatabase:(CBLDatabase*)database {
-    NSMutableArray* unarchiveTickets = [[NSMutableArray alloc] init];
-    NSMutableArray* archiveTickets = [[NSMutableArray alloc] init];
+    
+    NSMutableArray* documentList = [[NSMutableArray alloc] init];
+
 
     CBLView* completedArchivedTicketListView = [EDLViews completedArchivedTicketListView:database];
     NSError* error;
     CBLQuery* query = [completedArchivedTicketListView createQuery];
+
+    query.startKey = (archivedCompleted) ?  kArchivedKey :  kUnarchivedKey ;
+    query.endKey = (archivedCompleted) ?  kArchivedKey  :  kUnarchivedKey ;
+//    query.startKey = (archivedCompleted) ? @[kArchivedKey,kCompletedStatus] : @[kUnarchivedKey, [NSNull null]];
+//    query.endKey = (archivedCompleted) ? @[kArchivedKey,kCompletedStatus] : @[kUnarchivedKey, [NSNull null]];
+    
     CBLQueryEnumerator* queryResult = [query run:&error];
     
     for (CBLQueryRow* row in queryResult) {
         Ticket* ticket = [Ticket modelForDocument:row.document];
-        
-        if ([row.key0 isEqualToString:kUnarchivedKey] && ![row.value isEqualToString:@"completed"])
-            [unarchiveTickets addObject:ticket];
-        else
-            [archiveTickets addObject:ticket];
+        [documentList addObject:ticket];
     }
-    return  archivedCompleted ? archiveTickets : unarchiveTickets;
+    return documentList;
 }
 
 -(CBLLiveQuery*)startLiveQuery:(CBLDatabase*)database{

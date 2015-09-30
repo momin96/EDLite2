@@ -16,8 +16,6 @@
 
 -(NSInteger)countOfTickets;
 -(NSInteger)countOfMaps;
--(NSArray*)activeTicketListView:(CBLDatabase*)database;
--(NSArray*)completedTicketListView:(CBLDatabase*)database;
 -(NSString*)projectDocumentID:(CBLDatabase*)database;
 -(NSArray*)completedArchivedTicketListView:(BOOL)archivedCompleted inDatabase:(CBLDatabase*)database;
 -(CBLLiveQuery*)startLiveQuery:(CBLDatabase*)database;
