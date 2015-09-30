@@ -16,3 +16,5 @@ NSString *const EDLSyncStateChangedNotification = @"SyncManagerStateChangedAndUp
 NSString* const kTicketType = @"IB.EdBundle.Document.Ticket";
 NSString* const kMapType = @"IB.EdBundle.Document.Map";
 NSString* const kProjectDocumentType = @"IB.EdBundle.Document.Project";
+NSString *const kArchivedKey=@"archive";
+NSString *const kUnarchivedKey=@"unarchive";
