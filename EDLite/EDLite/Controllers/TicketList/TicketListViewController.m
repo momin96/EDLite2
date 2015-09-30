@@ -32,7 +32,10 @@
     [self navigationView];
     [CRLoadingView loadingViewInView:self.view Title:@"Loading Tickets"];
     
-    [self downloadActiveTicketsWithCompletionHandler:^(NSArray* documentList) {
+    
+
+    
+    [self showActiveTicketsWithCompletionHandler:^(NSArray* documentList) {
         if(documentList){
             self.documentList = documentList;
             [CRLoadingView removeView];
@@ -45,10 +48,17 @@
     [super didReceiveMemoryWarning];
 }
 
--(void)downloadActiveTicketsWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
+-(void)showCompeletedArchivedTicketWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
+    EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
+    NSArray* documentList = [dataManager completedArchivedTicketListView:YES inDatabase:self.connection.database];
+    if(documentList)
+        CompletionHandler(documentList);
+}
+
+-(void)showActiveTicketsWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
     
     EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
-    NSArray* documentList = [dataManager activeTicketListView:self.connection.database];
+    NSArray* documentList = [dataManager completedArchivedTicketListView:NO inDatabase:self.connection.database];
     if (documentList) {
         CompletionHandler(documentList);
     }
@@ -85,7 +95,7 @@
     
     if(sender.selectedSegmentIndex == 0){//Active
         [CRLoadingView loadingViewInView:self.view Title:@"Loading Active Ticket"];
-        [self downloadActiveTicketsWithCompletionHandler:^(NSArray *documentList) {
+        [self showActiveTicketsWithCompletionHandler:^(NSArray *documentList) {
             self.documentList = nil;
             self.documentList = documentList;
             [CRLoadingView removeView];
@@ -95,7 +105,7 @@
     else if (sender.selectedSegmentIndex == 1){//Completed
         [CRLoadingView loadingViewInView:self.view Title:@"Loading Completed Ticket"];
 
-        [self downloadCompletedTicketsWithCompletionHandler:^(NSArray *documentList) {
+        [self showCompeletedArchivedTicketWithCompletionHandler:^(NSArray *documentList) {
             self.documentList = nil;
             self.documentList = documentList;
             [CRLoadingView removeView];
