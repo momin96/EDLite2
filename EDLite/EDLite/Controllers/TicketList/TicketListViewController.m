@@ -34,7 +34,6 @@
     
     
 
-    
     [self showActiveTicketsWithCompletionHandler:^(NSArray* documentList) {
         if(documentList){
             self.documentList = documentList;
@@ -56,7 +55,6 @@
 }
 
 -(void)showActiveTicketsWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
-    
     EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
     NSArray* documentList = [dataManager completedArchivedTicketListView:NO inDatabase:self.connection.database];
     if (documentList) {
@@ -64,13 +62,13 @@
     }
 }
 
--(void)downloadCompletedTicketsWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
-    EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
-    NSArray* documentList = [dataManager completedTicketListView:self.connection.database];
-    if (documentList) {
-        CompletionHandler(documentList);
-    }
-}
+//-(void)downloadCompletedTicketsWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
+//    EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
+//    NSArray* documentList = [dataManager completedTicketListView:self.connection.database];
+//    if (documentList) {
+//        CompletionHandler(documentList);
+//    }
+//}
 
 #pragma mark -- UITableViewDataSource
 
@@ -93,7 +91,7 @@
 
 -(IBAction)tappedSegmentedControl:(UISegmentedControl *)sender {
     
-    if(sender.selectedSegmentIndex == 0){//Active
+    if(sender.selectedSegmentIndex == 0){//Active : Unarchived and nonCompleted Tickets
         [CRLoadingView loadingViewInView:self.view Title:@"Loading Active Ticket"];
         [self showActiveTicketsWithCompletionHandler:^(NSArray *documentList) {
             self.documentList = nil;
@@ -102,7 +100,7 @@
             [self.ticketTableView reloadData];
         }];
     }
-    else if (sender.selectedSegmentIndex == 1){//Completed
+    else if (sender.selectedSegmentIndex == 1){//Completed : Archived and Completed
         [CRLoadingView loadingViewInView:self.view Title:@"Loading Completed Ticket"];
 
         [self showCompeletedArchivedTicketWithCompletionHandler:^(NSArray *documentList) {

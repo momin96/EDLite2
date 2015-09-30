@@ -88,7 +88,7 @@
             NSString* archived = (doc[@"archived"] == [NSNull null]) ? kUnarchivedKey :  kArchivedKey ;
             emit(archived,doc[@"state"][@"state"]);
             
-        }) version:@"1.0"];
+        }) version:@"1.1"];
     }
     return completedArchivedTicketView;
 }
