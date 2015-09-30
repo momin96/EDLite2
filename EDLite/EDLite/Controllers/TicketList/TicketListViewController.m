@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UITableView* ticketTableView;
 @property (nonatomic) NSArray* documentList;
 
+@property (nonatomic) CBLLiveQuery* liveQuery;
+
 @end
 
 @implementation TicketListViewController
@@ -41,8 +43,23 @@
     }];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.liveQuery stop];
+    [self startLiveQuery];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+
+-(void)startLiveQuery{
+    EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
+    self.liveQuery = [dataManager startLiveQuery:self.connection.database];
+    [self.liveQuery addObserver:self forKeyPath:@"rows" options:0 context:NULL];
+    [self.liveQuery start];
 }
 
 -(void)showCompeletedArchivedTicketWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
@@ -111,7 +128,22 @@
         NSLog(@"New TicketCreated");
     else
         NSLog(@"Cannot create new Ticket");
-    
+}
+
+#pragma mark -- KVO
+-(void)observeValueForKeyPath:(NSString *)keyPath
+                     ofObject:(id)object
+                       change:(NSDictionary *)change
+                      context:(void *)context{
+    if (object == self.liveQuery) {
+        NSLog(@"Observe change Event");
+        for (CBLQueryRow* row in self.liveQuery.rows) {
+            NSLog(@"Key : [%@] value : [%@]",row.key,row.value);
+        }
+        NSLog(@"Count Enumerator ; [%lu]",[self.liveQuery.rows count]);
+
+//        [self.ticketTableView reloadData];
+    }
 }
 
 @end

@@ -93,4 +93,16 @@
     return completedArchivedTicketView;
 }
 
++(CBLView*)liveQueryView:(CBLDatabase*)database{
+    CBLView* liveQueryView = [database viewNamed:@"_liveQueyView"];
+    liveQueryView.documentType = kTicketType;
+    if (!liveQueryView.mapBlock) {
+        [liveQueryView setMapBlock:MAPBLOCK({
+            if(doc[@"_id"] && !(doc[@"archived"] == [NSNull null]))
+                emit(@[doc[@"_id"],doc[@"archived"]],doc[@"state"][@"state"]);
+        }) version:@"1.2"];
+    }
+    return liveQueryView;
+}
+
 @end

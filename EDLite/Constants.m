@@ -18,3 +18,4 @@ NSString* const kMapType = @"IB.EdBundle.Document.Map";
 NSString* const kProjectDocumentType = @"IB.EdBundle.Document.Project";
 NSString *const kArchivedKey=@"archive";
 NSString *const kUnarchivedKey=@"unarchive";
+
