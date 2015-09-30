@@ -22,3 +22,4 @@ NSString *const kUnarchivedKey=@"unarchive";
 NSString* const kCompletedStatus=@"completed";
 NSString* const kStartedStatus=@"started";
 NSString* const kCreatedStatus=@"created";
+NSString* const kNonCompletedStatus = @"nonCompleted";

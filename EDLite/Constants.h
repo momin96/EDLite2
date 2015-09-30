@@ -37,5 +37,7 @@ extern NSString *const kUnarchivedKey;
 extern NSString* const kCompletedStatus;
 extern NSString* const kStartedStatus;
 extern NSString* const kCreatedStatus;
+extern NSString* const kNonCompletedStatus;
+
 
 

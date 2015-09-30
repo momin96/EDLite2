@@ -46,8 +46,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [self.liveQuery stop];
-    [self startLiveQuery];
+//    [self.liveQuery stop];
+//    [self startLiveQuery];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,12 +55,12 @@
 }
 
 
--(void)startLiveQuery{
-    EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
-    self.liveQuery = [dataManager startLiveQuery:self.connection.database];
-    [self.liveQuery addObserver:self forKeyPath:@"rows" options:0 context:NULL];
-    [self.liveQuery start];
-}
+//-(void)startLiveQuery{
+//    EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
+//    self.liveQuery = [dataManager startLiveQuery:self.connection.database];
+//    [self.liveQuery addObserver:self forKeyPath:@"rows" options:0 context:NULL];
+//    [self.liveQuery start];
+//}
 
 -(void)showCompeletedArchivedTicketWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
     EDLDataManager* dataManager = [EDLDataManager sharedDataManager];

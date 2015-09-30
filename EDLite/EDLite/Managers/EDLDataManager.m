@@ -57,10 +57,8 @@
     NSError* error;
     CBLQuery* query = [completedArchivedTicketListView createQuery];
 
-    query.startKey = (archivedCompleted) ?  kArchivedKey :  kUnarchivedKey ;
-    query.endKey = (archivedCompleted) ?  kArchivedKey  :  kUnarchivedKey ;
-//    query.startKey = (archivedCompleted) ? @[kArchivedKey,kCompletedStatus] : @[kUnarchivedKey, [NSNull null]];
-//    query.endKey = (archivedCompleted) ? @[kArchivedKey,kCompletedStatus] : @[kUnarchivedKey, [NSNull null]];
+    query.startKey = (archivedCompleted) ?  @[kArchivedKey,kCompletedStatus] :  @[kUnarchivedKey,kNonCompletedStatus] ;
+    query.endKey = (archivedCompleted) ?   @[kArchivedKey,kCompletedStatus] :  @[kUnarchivedKey,kNonCompletedStatus] ;
     
     CBLQueryEnumerator* queryResult = [query run:&error];
     
@@ -71,10 +69,10 @@
     return documentList;
 }
 
--(CBLLiveQuery*)startLiveQuery:(CBLDatabase*)database{
-    CBLView* liveQueryView = [EDLViews liveQueryView:database];
-    
-    CBLLiveQuery* liveQuery = [[liveQueryView createQuery] asLiveQuery];
-    return  liveQuery;
-}
+//-(CBLLiveQuery*)startLiveQuery:(CBLDatabase*)database{
+//    CBLView* liveQueryView = [EDLViews liveQueryView:database];
+//    
+//    CBLLiveQuery* liveQuery = [[liveQueryView createQuery] asLiveQuery];
+//    return  liveQuery;
+//}
 @end
