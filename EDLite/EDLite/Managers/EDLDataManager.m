@@ -76,4 +76,24 @@
     NSLog(@"Project ID : [%@]",row.documentID);
     return row.documentID;
 }
+
+-(NSArray*)completedArchivedTicketListView:(BOOL)archivedCompleted inDatabase:(CBLDatabase*)database {
+    NSMutableArray* unarchiveTickets = [[NSMutableArray alloc] init];
+    NSMutableArray* archiveTickets = [[NSMutableArray alloc] init];
+
+    CBLView* completedArchivedTicketListView = [EDLViews completedArchivedTicketListView:database];
+    NSError* error;
+    CBLQuery* query = [completedArchivedTicketListView createQuery];
+    CBLQueryEnumerator* queryResult = [query run:&error];
+    
+    for (CBLQueryRow* row in queryResult) {
+        Ticket* ticket = [Ticket modelForDocument:row.document];
+        
+        if ([row.key0 isEqualToString:kUnarchivedKey] && ![row.value isEqualToString:@"completed"])
+            [unarchiveTickets addObject:ticket];
+        else
+            [archiveTickets addObject:ticket];
+    }
+    return  archivedCompleted ? archiveTickets : unarchiveTickets;
+}
 @end

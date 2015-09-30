@@ -78,4 +78,19 @@
     }) version:@"1.0"];
     return typeProjectView;
 }
+
++(CBLView*)completedArchivedTicketListView:(CBLDatabase*)database{
+    CBLView* completedArchivedTicketView = [database viewNamed:@"_completedArchivedTicketView"];
+    completedArchivedTicketView.documentType = kTicketType;
+    if (!completedArchivedTicketView.mapBlock) {
+        [completedArchivedTicketView setMapBlock:MAPBLOCK({
+            
+            NSString* archived = (doc[@"archived"] == [NSNull null]) ? kUnarchivedKey :  kArchivedKey ;
+            emit(archived,doc[@"state"][@"state"]);
+            
+        }) version:@"1.0"];
+    }
+    return completedArchivedTicketView;
+}
+
 @end

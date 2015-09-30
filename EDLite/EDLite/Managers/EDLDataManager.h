@@ -19,5 +19,5 @@
 -(NSArray*)activeTicketListView:(CBLDatabase*)database;
 -(NSArray*)completedTicketListView:(CBLDatabase*)database;
 -(NSString*)projectDocumentID:(CBLDatabase*)database;
-
+-(NSArray*)completedArchivedTicketListView:(BOOL)archivedCompleted inDatabase:(CBLDatabase*)database;
 @end

@@ -19,4 +19,6 @@
 
 +(CBLView*)typeProjectView:(CBLDatabase*)database;
 
++(CBLView*)completedArchivedTicketListView:(CBLDatabase*)database;
+
 @end
