@@ -12,12 +12,24 @@
 //Persistant CBL model
 @dynamic _id,_rev,doctrine_metadata,archived,content,dates,location,map,participants,plan,project,state,timeline;
 
-@synthesize database;
 
-- (void)configureNewTicket {
-    self.content = [self dictionaryWithType:@"Note"];
++(instancetype)ticketInDatabase:(CBLDatabase*)db{
+    return [[[self class] alloc] initWithDatabase:db];
+}
+
+-(instancetype)initWithDatabase:(CBLDatabase*)db{
+    self = [[self class] modelForNewDocumentInDatabase:db];
+    if(!self){
+        
+    }
+    [self configureNewTicketWithDatabase:db];
+    return self;
+}
+
+- (void)configureNewTicketWithDatabase:(CBLDatabase*)db{
+    self.archived = @"2014-06-19T08:13:52.479Z";
+    self.content = [self ticketContents];
     self.dates = @{};
-//    self.archived = @"2014-06-19T08:13:52.479Z";
     
     // enable Doctrine, this is a fixed value needed for the PHP backend
     // implementation
@@ -32,15 +44,23 @@
     
     self.plan = [self dictionaryWithType:@"Plan"];
     
-    self.project = [[EDLDataManager sharedDataManager] projectDocumentID:self.database];
+    self.project = [[EDLDataManager sharedDataManager] projectDocumentID:db];
     
     NSMutableDictionary *stateDict =
     [[self dictionaryWithType:@"State"] mutableCopy];
-    [stateDict setValue:@"created" forKey:@"state"];
+    [stateDict setValue:@"completed" forKey:@"state"];
     self.state = [NSDictionary dictionaryWithDictionary:stateDict];
     self.timeline = @[];
     self.type = kTicketType;
 
+}
+-(NSDictionary*)ticketContents{
+    NSDictionary* content = @{
+                              @"title" : @"new ticket title",
+                              @"body" : @"new ticket body",
+                              @"type" : @"IB.EdBundle.Document.Note"
+                              };
+    return content;
 }
 
 -(NSDictionary*)ticketParticipants{
@@ -118,5 +138,20 @@
     return [NSString stringWithString:hid];
 }
 
+#pragma mark -- Creating new ID for Ticket
+- (NSString *)idForNewDocumentInDatabase:(CBLDatabase *__nonnull)db {
+    return [self generateUUID];
+}
 
+- (NSString *)generateUUID {
+    
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    
+    NSString *uuidStr =
+    (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuid);
+    CFRelease(uuid);
+    
+    return [uuidStr stringByReplacingOccurrencesOfString:@"-"
+                                              withString:[NSString string]];
+}
 @end

@@ -105,6 +105,13 @@
 }
 
 -(void)tappedNewTicketButton{
+    Ticket* ticket = [Ticket ticketInDatabase:self.connection.database];
+    NSError* error;
+    [ticket save:&error];
+    if(!error)
+        NSLog(@"New TicketCreated");
+    else
+        NSLog(@"Cannot create new Ticket");
     
 }
 

@@ -24,9 +24,8 @@
 @property(nonatomic, strong) NSDictionary *state;
 @property(nonatomic, strong) NSArray *timeline;
 
++(instancetype)ticketInDatabase:(CBLDatabase*)db;
 
-
-@property (nonatomic) CBLDatabase* database;
 
 -(NSString *)humanId;
 - (NSString *)title;
