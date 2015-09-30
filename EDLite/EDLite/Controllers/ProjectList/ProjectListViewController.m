@@ -75,7 +75,7 @@
     [connectionManager prepareConnectionWithContracts:contracts completionHandler:^(BOOL finished, NSArray *projectList) {
         self.projectList = projectList;
         [self.projectTableView reloadData];
-        //        [self initiateSyncConnection];
+                [self initiateSyncConnection];
     }];
 }
 

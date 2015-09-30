@@ -12,6 +12,7 @@
 
 
 @property (nonatomic) CBLReplication* pull;
+@property (nonatomic) CBLReplication* push;
 
 @property(nonatomic, readonly) float progress;
 

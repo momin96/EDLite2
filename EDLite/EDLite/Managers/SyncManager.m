@@ -37,12 +37,13 @@
 
 -(void)defineSync{
     CBLReplication* pull = [self.connection.database createPullReplication:self.connection.source];
-    
+    CBLReplication* push = [self.connection.database createPushReplication:self.connection.source];
     pull.continuous = YES;
+    push.continuous = YES;
     self.pull = pull;
-    [self observeReplication:@[self.pull]];
+    self.push = push;
+    [self observeReplication:@[self.pull,self.push]];
     NSLog(@"pull [%@] and status [%u]",self.pull,self.pull.status);
-//    [self startSync];
 }
 
 -(void)observeReplication:(NSArray*)replications{
@@ -58,8 +59,10 @@
                                                object:repl];
 }
 
--(void)replicationProgress:(NSNotificationCenter*)n{
-    NSLog(@"pull [%@] and status [%u]",self.pull,self.pull.status);
+-(void)replicationProgress:(NSNotification*)n{
+    CBLReplication* repl = n.object;
+
+    NSLog(@"replication [%@] and status [%u]",repl,repl.status);
     // First check whether replication is currently active:
     CBLReplicationStatus status = self.pull.status;
     BOOL active = (self.pull.status == kCBLReplicationActive);
@@ -76,19 +79,18 @@
         _progress = progress;
     }
     [self.connection updateSyncStatus:status];
-    
-    NSLog(@"SYNC: [%f /%f] pull status : [%u]",completed,total,self.pull.status);
+    NSLog(@"SYNC: [%f /%f] pull status : [%u]",completed,total,repl.status);
 }
 
 
 -(void)startSync{
     [self.pull start];
-//    [self.push start]
+    [self.push start];
 }
 
 -(void)stopSync{
     [self.pull stop];
-//    [self.push start]
+    [self.push stop];
 }
 
 
