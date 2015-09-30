@@ -48,7 +48,7 @@
     
     NSMutableDictionary *stateDict =
     [[self dictionaryWithType:@"State"] mutableCopy];
-    [stateDict setValue:@"completed" forKey:@"state"];
+    [stateDict setValue:@"started" forKey:@"state"];
     self.state = [NSDictionary dictionaryWithDictionary:stateDict];
     self.timeline = @[];
     self.type = kTicketType;

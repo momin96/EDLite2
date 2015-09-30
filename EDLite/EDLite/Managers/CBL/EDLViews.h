@@ -19,4 +19,7 @@
 
 +(CBLView*)typeProjectView:(CBLDatabase*)database;
 
++(CBLView*)liveQueryView:(CBLDatabase*)database;
+
++(CBLView*)completedArchivedTicketListView:(CBLDatabase*)database;
 @end

@@ -31,3 +31,5 @@ extern NSString * const EDLSyncStateChangedNotification;
 extern NSString* const kTicketType;
 extern NSString* const kMapType;
 extern NSString* const kProjectDocumentType;
+extern NSString *const kArchivedKey;
+extern NSString *const kUnarchivedKey;

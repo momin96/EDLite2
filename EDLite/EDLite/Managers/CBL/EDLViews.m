@@ -78,4 +78,24 @@
     }) version:@"1.0"];
     return typeProjectView;
 }
+
++(CBLView*)liveQueryView:(CBLDatabase*)database{
+    CBLView* liveQueryView = [database viewNamed:@"_liveQueyView"];
+    liveQueryView.documentType = kTicketType;
+    if (!liveQueryView.mapBlock) {
+        [liveQueryView setMapBlock:MAPBLOCK({
+            if(doc[@"_id"] && !(doc[@"archived"] == [NSNull null]))
+                emit(@[doc[@"_id"],doc[@"archived"]],doc[@"state"][@"state"]);
+        }) version:@"1.2"];
+    }
+    return liveQueryView;
+}
+
++(CBLView*)completedArchivedTicketListView:(CBLDatabase*)database{
+    CBLView* compeletedArchivedTicketListView = [database viewNamed:@"_compeletedArchivedTicketListView"];
+    compeletedArchivedTicketListView.documentType = kTicketType;
+    
+    return compeletedArchivedTicketListView;
+}
+
 @end

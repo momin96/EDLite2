@@ -76,4 +76,11 @@
     NSLog(@"Project ID : [%@]",row.documentID);
     return row.documentID;
 }
+
+-(CBLLiveQuery*)startLiveQuery:(CBLDatabase*)database{
+    CBLView* liveQueryView = [EDLViews liveQueryView:database];
+    
+    CBLLiveQuery* liveQuery = [[liveQueryView createQuery] asLiveQuery];
+    return  liveQuery;
+}
 @end
