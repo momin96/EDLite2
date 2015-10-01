@@ -56,9 +56,13 @@
     CBLView* completedArchivedTicketListView = [EDLViews completedArchivedTicketListView:database];
     NSError* error;
     CBLQuery* query = [completedArchivedTicketListView createQuery];
-
-    query.startKey = (archivedCompleted) ?  @[kArchivedKey,kCompletedStatus] :  @[kUnarchivedKey,kNonCompletedStatus] ;
-    query.endKey = (archivedCompleted) ?   @[kArchivedKey,kCompletedStatus] :  @[kUnarchivedKey,kNonCompletedStatus] ;
+    
+    query.limit = 15;
+    query.startKey = (archivedCompleted) ?  kCompletedStatus :  kNonCompletedStatus ;
+    query.endKey = (archivedCompleted) ?   kCompletedStatus :  kNonCompletedStatus ;
+    
+//    query.startKey = (archivedCompleted) ?  @[kArchivedKey,kCompletedStatus] :  @[kUnarchivedKey,kNonCompletedStatus];
+//    query.endKey = (archivedCompleted) ?   @[kArchivedKey,kCompletedStatus] :  @[kUnarchivedKey,kNonCompletedStatus];
     
     CBLQueryEnumerator* queryResult = [query run:&error];
     

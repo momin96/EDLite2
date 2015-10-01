@@ -53,12 +53,12 @@
     if (!completedArchivedTicketView.mapBlock) {
         [completedArchivedTicketView setMapBlock:MAPBLOCK({
             
-            NSString* archived = (doc[@"archived"] == [NSNull null]) ? kUnarchivedKey :  kArchivedKey ;
+//            NSString* archived = (doc[@"archived"] == [NSNull null]) ? kUnarchivedKey :  kArchivedKey ;
             NSString* status = [doc[@"state"][@"state"] isEqualToString:kCompletedStatus] ? kCompletedStatus : kNonCompletedStatus;
+//            emit(@[archived,status],doc[@"_id"]]);
+            emit(status,doc[@"_id"]);
             
-            emit(@[archived,status],doc[@"_id"]);
-            
-        }) version:@"1.5"];
+        }) version:@"1.7"];
     }
     return completedArchivedTicketView;
 }
