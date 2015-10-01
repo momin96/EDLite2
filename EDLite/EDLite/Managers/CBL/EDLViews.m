@@ -56,7 +56,7 @@
 //            NSString* archived = (doc[@"archived"] == [NSNull null]) ? kUnarchivedKey :  kArchivedKey ;
             NSString* status = [doc[@"state"][@"state"] isEqualToString:kCompletedStatus] ? kCompletedStatus : kNonCompletedStatus;
 //            emit(@[archived,status],doc[@"_id"]]);
-            emit(status,doc[@"_id"]);
+            emit(status,doc[@"content"][@"title"]);
             
         }) version:@"1.7"];
     }
