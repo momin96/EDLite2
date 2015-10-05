@@ -14,4 +14,5 @@
 @property (weak, nonatomic)IBOutlet UILabel* ticketDescriptionLabel;
 @property (weak, nonatomic)IBOutlet UILabel* ticketStatuslabel;
 @property (weak, nonatomic)IBOutlet UILabel* ticketArchivedLabel;
+@property (weak, nonatomic) IBOutlet UIImageView* ticketAttachmentImageView;
 @end

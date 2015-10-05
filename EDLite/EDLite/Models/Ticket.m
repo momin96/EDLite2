@@ -108,6 +108,11 @@
 -(NSString*)getArchivedValue{
     return self.archived ? kArchivedKey : kUnarchivedKey;
 }
+
+-(BOOL)isAttachmentAvailable{
+    NSArray* attachments = [self attachmentNames];
+    return attachments ? YES : NO;
+}
 #pragma mark - Status
 
 - (NSString *)status {

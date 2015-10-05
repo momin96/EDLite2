@@ -92,6 +92,7 @@
     cell.ticketDescriptionLabel.text = [ticket body];
     cell.ticketStatuslabel.text = [ticket status];
     cell.ticketArchivedLabel.text = [ticket getArchivedValue];
+    cell.ticketAttachmentImageView.hidden = ![ticket isAttachmentAvailable];
     return cell;
 }
 

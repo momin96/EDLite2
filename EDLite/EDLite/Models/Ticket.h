@@ -32,4 +32,5 @@
 - (NSString *)body;
 - (NSString *)status;
 -(NSString*)getArchivedValue;
+-(BOOL)isAttachmentAvailable;
 @end
