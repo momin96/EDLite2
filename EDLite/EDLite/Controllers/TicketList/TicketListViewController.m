@@ -36,13 +36,7 @@
     [self navigationView];
     [CRLoadingView loadingViewInView:self.view Title:@"Loading Tickets"];
     
-    [self showActiveTicketsWithCompletionHandler:^(NSArray* documentList) {
-        if(documentList){
-            self.documentList = documentList;
-            [CRLoadingView removeView];
-            [self.ticketTableView reloadData];
-        }
-    }];
+    [self showActiveTickets];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -56,6 +50,25 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark -- Helper Method
+
+-(void)showCompeletedTickets{
+    [self showCompeletedArchivedTicketWithCompletionHandler:^(NSArray *documentList) {
+        self.documentList = nil;
+        self.documentList = documentList;
+        [CRLoadingView removeView];
+        [self.ticketTableView reloadData];
+    }];
+}
+
+-(void)showActiveTickets{
+    [self showActiveTicketsWithCompletionHandler:^(NSArray *documentList) {
+        self.documentList = nil;
+        self.documentList = documentList;
+        [CRLoadingView removeView];
+        [self.ticketTableView reloadData];
+    }];
+}
 
 -(void)startLiveQuery{
     EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
@@ -139,20 +152,6 @@
         [self.ticketTableView reloadData];
     }
 }
--(void)showCompeletedTickets{
-    [self showCompeletedArchivedTicketWithCompletionHandler:^(NSArray *documentList) {
-        self.documentList = nil;
-        self.documentList = documentList;
-        [CRLoadingView removeView];
-        [self.ticketTableView reloadData];
-    }];
-}
--(void)showActiveTickets{
-    [self showActiveTicketsWithCompletionHandler:^(NSArray *documentList) {
-        self.documentList = nil;
-        self.documentList = documentList;
-        [CRLoadingView removeView];
-        [self.ticketTableView reloadData];
-    }];
-}
+
+
 @end
