@@ -10,4 +10,5 @@
 
 @interface TicketListViewController : UIViewController 
 @property (nonatomic) EDLConnection* connection;
+
 @end

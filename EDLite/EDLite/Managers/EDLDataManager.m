@@ -73,10 +73,10 @@
     return documentList;
 }
 
-//-(CBLLiveQuery*)startLiveQuery:(CBLDatabase*)database{
-//    CBLView* liveQueryView = [EDLViews liveQueryView:database];
-//    
-//    CBLLiveQuery* liveQuery = [[liveQueryView createQuery] asLiveQuery];
-//    return  liveQuery;
-//}
+-(CBLLiveQuery*)startLiveQuery:(CBLDatabase*)database{
+    CBLView* liveQueryView = [EDLViews liveQueryView:database];
+    
+    CBLLiveQuery* liveQuery = [[liveQueryView createQuery] asLiveQuery];
+    return  liveQuery;
+}
 @end

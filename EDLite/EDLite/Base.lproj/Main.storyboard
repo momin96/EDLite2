@@ -199,6 +199,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="segmentationControl" destination="yXM-8f-wuu" id="pZc-h6-WT2"/>
                         <outlet property="ticketTableView" destination="bxj-Up-de3" id="XGT-93-KFD"/>
                     </connections>
                 </viewController>

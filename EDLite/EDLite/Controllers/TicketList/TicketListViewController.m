@@ -12,6 +12,8 @@
 @interface TicketListViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView* ticketTableView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl* segmentationControl;
+
 @property (nonatomic) NSArray* documentList;
 
 @property (nonatomic) CBLLiveQuery* liveQuery;
@@ -46,8 +48,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-//    [self.liveQuery stop];
-//    [self startLiveQuery];
+    [self.liveQuery stop];
+    [self startLiveQuery];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,12 +57,13 @@
 }
 
 
-//-(void)startLiveQuery{
-//    EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
-//    self.liveQuery = [dataManager startLiveQuery:self.connection.database];
-//    [self.liveQuery addObserver:self forKeyPath:@"rows" options:0 context:NULL];
-//    [self.liveQuery start];
-//}
+-(void)startLiveQuery{
+    EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
+    self.liveQuery = [dataManager startLiveQuery:self.connection.database];
+    
+    [self.liveQuery addObserver:self forKeyPath:@"rows" options:0 context:NULL];
+    [self.liveQuery start];
+}
 
 -(void)showCompeletedArchivedTicketWithCompletionHandler:(void(^)(NSArray* documentList))CompletionHandler{
     EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
@@ -102,22 +105,11 @@
     
     if(sender.selectedSegmentIndex == 0){//Active : Unarchived and nonCompleted Tickets
         [CRLoadingView loadingViewInView:self.view Title:@"Loading Active Ticket"];
-        [self showActiveTicketsWithCompletionHandler:^(NSArray *documentList) {
-            self.documentList = nil;
-            self.documentList = documentList;
-            [CRLoadingView removeView];
-            [self.ticketTableView reloadData];
-        }];
+        [self showActiveTickets];
     }
     else if (sender.selectedSegmentIndex == 1){//Completed : Archived and Completed
         [CRLoadingView loadingViewInView:self.view Title:@"Loading Completed Ticket"];
-
-        [self showCompeletedArchivedTicketWithCompletionHandler:^(NSArray *documentList) {
-            self.documentList = nil;
-            self.documentList = documentList;
-            [CRLoadingView removeView];
-            [self.ticketTableView reloadData];
-        }];
+        [self showCompeletedTickets];
     }
 }
 
@@ -137,14 +129,30 @@
                        change:(NSDictionary *)change
                       context:(void *)context{
     if (object == self.liveQuery) {
-        NSLog(@"Observe change Event");
-        for (CBLQueryRow* row in self.liveQuery.rows) {
-            NSLog(@"Key : [%@] value : [%@]",row.key,row.value);
-        }
+        if(self.segmentationControl.selectedSegmentIndex == 1)
+           [self showCompeletedTickets];
+        else
+            [self showActiveTickets];
+
         NSLog(@"Count Enumerator ; [%lu]",[self.liveQuery.rows count]);
 
-//        [self.ticketTableView reloadData];
+        [self.ticketTableView reloadData];
     }
 }
-
+-(void)showCompeletedTickets{
+    [self showCompeletedArchivedTicketWithCompletionHandler:^(NSArray *documentList) {
+        self.documentList = nil;
+        self.documentList = documentList;
+        [CRLoadingView removeView];
+        [self.ticketTableView reloadData];
+    }];
+}
+-(void)showActiveTickets{
+    [self showActiveTicketsWithCompletionHandler:^(NSArray *documentList) {
+        self.documentList = nil;
+        self.documentList = documentList;
+        [CRLoadingView removeView];
+        [self.ticketTableView reloadData];
+    }];
+}
 @end
