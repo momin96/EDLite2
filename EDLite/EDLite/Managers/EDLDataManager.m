@@ -19,7 +19,7 @@
 }
 
 -(NSInteger)countOfTickets{
-    CBLView* countOfTicketsView = [ EDLViews countOfTicketsView:self.database];
+    CBLView* countOfTicketsView = [self.database existingViewNamed:@"_countOfTicketsView"];
     NSError* error;
     CBLQuery* query = [countOfTicketsView createQuery];
     CBLQueryEnumerator* queryResult =  [query run:&error];
@@ -28,7 +28,7 @@
 }
 -(NSInteger)countOfMaps{
     
-    CBLView* countOfMapsView = [EDLViews countOfMapsView:self.database];
+    CBLView* countOfMapsView = [self.database existingViewNamed:@"_countOfMapsView"];
     
     NSError* error;
     CBLQuery* query = [countOfMapsView createQuery];
@@ -37,9 +37,8 @@
 }
 
 
-
 -(NSString*)projectDocumentID:(CBLDatabase*)database{
-    CBLView* typeProjectView = [EDLViews typeProjectView:database];
+    CBLView* typeProjectView = [database existingViewNamed:@"_typeProjectView"];
     NSError* error;
     CBLQuery* query = [typeProjectView createQuery];
     CBLQueryEnumerator* result = [query run:&error];
@@ -52,8 +51,7 @@
     
     NSMutableArray* documentList = [[NSMutableArray alloc] init];
 
-
-    CBLView* completedArchivedTicketListView = [EDLViews completedArchivedTicketListView:database];
+    CBLView* completedArchivedTicketListView = [database existingViewNamed:@"_completedArchivedTicketView"];
     NSError* error;
     CBLQuery* query = [completedArchivedTicketListView createQuery];
     
@@ -74,7 +72,7 @@
 }
 
 -(CBLLiveQuery*)startLiveQuery:(CBLDatabase*)database{
-    CBLView* liveQueryView = [EDLViews liveQueryView:database];
+    CBLView* liveQueryView = [database existingViewNamed:@"_liveQueyView"];
     
     CBLLiveQuery* liveQuery = [[liveQueryView createQuery] asLiveQuery];
     return  liveQuery;

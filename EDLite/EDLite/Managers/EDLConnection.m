@@ -21,9 +21,26 @@
         NSLog(@"Database creation failed [%@]",database);
         return nil;
     }
+    __weak typeof(self) weakSelf = self;
+    [manager backgroundTellDatabaseNamed:database.name to:^(CBLDatabase * __nonnull database) {
+        [weakSelf registerViewsWithDatabase:database];
+    }];
+    
     return database;
 }
 
+-(void)registerViewsWithDatabase:(CBLDatabase*)database{
+    
+    [EDLViews countOfMapsView:database];
+    
+    [EDLViews countOfTicketsView:database];
+    
+    [EDLViews typeProjectView:database];
+    
+    [EDLViews completedArchivedTicketListView:database];
+    
+    [EDLViews liveQueryView:database];
+}
 
 -(instancetype)initWithProjectInfo:(Project *)projectInfo{
     self = [super init];
