@@ -9,7 +9,7 @@
 #import "TicketListViewController.h"
 #import "TicketListCell.h"
 #import "Ticket.h"
-@interface TicketListViewController ()
+@interface TicketListViewController () <TicketListCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView* ticketTableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl* segmentationControl;
@@ -103,11 +103,13 @@
     static NSString* cellIdentifier =  @"TicketListCell";
     TicketListCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     Ticket* ticket = self.documentList[indexPath.row];
+    cell.delegate = self;
+    cell.indexPath = indexPath;
     cell.ticketIDLabel.text = [ticket humanId];
     cell.ticketTitleLabel.text = [ticket title];
     cell.ticketDescriptionLabel.text = [ticket body];
     cell.ticketStatuslabel.text = [ticket status];
-    cell.ticketArchivedLabel.text = [ticket getArchivedValue];
+    [cell.ticketArchivedButton setBackgroundImage:[ticket getArchivedImage] forState:UIControlStateNormal];
     cell.ticketAttachmentImageView.hidden = ![ticket isAttachmentAvailable];
     return cell;
 }
@@ -153,5 +155,20 @@
     }
 }
 
+#pragma mark -- TicketCellDelegate Method
+-(void)ticket:(TicketListCell *)ticketCell didTapTicketCellAtIndexPath:(NSIndexPath *)indexPath{
+    NSError* error;
+   Ticket* ticket = self.documentList[indexPath.row];
+    if(ticket.archived)
+       [ticket unarchive];
+    else
+        [ticket archive];
+    [ticket save:&error];
+    if(error)
+        NSLog(@"cannot save ticket");
+    else
+        NSLog(@"Ticket archived");
+    NSLog(@"Ticket cell [%@] at indexPath : [%ld]",ticketCell,(long)indexPath.row);
+}
 
 @end

@@ -167,19 +167,22 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="unArchived" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9MK-cC-Hxh">
-                                                    <rect key="frame" x="261" y="20" width="87" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ticket_attachment" translatesAutoresizingMaskIntoConstraints="NO" id="Zfz-cH-pwW">
                                                     <rect key="frame" x="323" y="55" width="20" height="20"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOZ-hD-Xyg">
+                                                    <rect key="frame" x="265" y="20" width="34" height="34"/>
+                                                    <state key="normal" backgroundImage="unarchive">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="tappedArchivedButton:" destination="vVP-ey-gYu" eventType="touchUpInside" id="ZBy-Le-pAD"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="ticketArchivedLabel" destination="9MK-cC-Hxh" id="R3Z-Jo-iPx"/>
+                                            <outlet property="ticketArchivedButton" destination="dOZ-hD-Xyg" id="CvS-ff-rds"/>
                                             <outlet property="ticketAttachmentImageView" destination="Zfz-cH-pwW" id="TXw-qO-Agn"/>
                                             <outlet property="ticketDescriptionLabel" destination="OJh-Ip-boo" id="hoY-8g-1y9"/>
                                             <outlet property="ticketIDLabel" destination="9ff-sh-fBc" id="Za7-03-Y40"/>
@@ -229,5 +232,6 @@
     </scenes>
     <resources>
         <image name="Ticket_attachment" width="64" height="64"/>
+        <image name="unarchive" width="33" height="33"/>
     </resources>
 </document>

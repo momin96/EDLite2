@@ -18,5 +18,8 @@
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
 }
-
+-(IBAction)tappedArchivedButton:(UIButton*)sender{
+    if([_delegate respondsToSelector:@selector(ticket:didTapTicketCellAtIndexPath:)])
+        [_delegate ticket:self didTapTicketCellAtIndexPath:self.indexPath];
+}
 @end

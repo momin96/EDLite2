@@ -105,8 +105,20 @@
     return [self.content[@"body"] isEqualToString:@""] ? @"N/A" : self.content[@"body"];
 }
 
--(NSString*)getArchivedValue{
-    return self.archived ? kArchivedKey : kUnarchivedKey;
+#pragma mark -  Archive
+
+/** archives the ticket */
+- (void)archive {
+    self.archived = [CBLJSON JSONObjectWithDate:[NSDate date]];
+}
+
+/** unarchives this ticket */
+- (void)unarchive {
+    self.archived = nil;
+}
+
+-(UIImage*)getArchivedImage{
+    return self.archived ? [UIImage imageNamed:@"archive"] : [UIImage imageNamed:@"unarchive"] ;
 }
 
 -(BOOL)isAttachmentAvailable{

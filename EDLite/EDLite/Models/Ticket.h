@@ -31,6 +31,9 @@
 - (NSString *)title;
 - (NSString *)body;
 - (NSString *)status;
--(NSString*)getArchivedValue;
+-(UIImage*)getArchivedImage;
 -(BOOL)isAttachmentAvailable;
+
+- (void)archive;
+- (void)unarchive;
 @end

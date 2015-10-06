@@ -7,12 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TicketListCell;
+
+@protocol TicketListCellDelegate <NSObject>
+
+@optional
+-(void)ticket:(TicketListCell*)ticketCell didTapTicketCellAtIndexPath:(NSIndexPath*)indexPath;
+
+@end
+
 
 @interface TicketListCell : UITableViewCell
 @property (weak, nonatomic)IBOutlet UILabel* ticketIDLabel;
 @property (weak, nonatomic)IBOutlet UILabel* ticketTitleLabel;
 @property (weak, nonatomic)IBOutlet UILabel* ticketDescriptionLabel;
 @property (weak, nonatomic)IBOutlet UILabel* ticketStatuslabel;
-@property (weak, nonatomic)IBOutlet UILabel* ticketArchivedLabel;
+@property (weak, nonatomic)IBOutlet UIButton* ticketArchivedButton;
 @property (weak, nonatomic) IBOutlet UIImageView* ticketAttachmentImageView;
+
+@property (nonatomic) NSIndexPath* indexPath;
+@property (weak, nonatomic) id <TicketListCellDelegate> delegate;
 @end
