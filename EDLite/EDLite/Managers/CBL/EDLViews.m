@@ -68,8 +68,8 @@
     liveQueryView.documentType = kTicketType;
     if (!liveQueryView.mapBlock) {
         [liveQueryView setMapBlock:MAPBLOCK({
-            emit(@[doc[@"state"][@"state"],doc[@"archived"]],@"LiveQuery"); // LiveQuery string in Value is just junk, will replace it with proper attribute
-        }) version:@"1.4"];
+            emit(doc[@"_rev"],@"LiveQuery"); // LiveQuery string in Value is just junk, will replace it with proper attribute
+        }) version:@"1.6"];
     }
     return liveQueryView;
 }
