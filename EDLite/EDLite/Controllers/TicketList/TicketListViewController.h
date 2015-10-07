@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TicketListViewControllerDelegate <NSObject>
+@optional
+-(void)showMasterView;
+
+@end
+
 @interface TicketListViewController : UIViewController
 @property (nonatomic) EDLConnection* connection;
-
+@property (weak, nonatomic) id <TicketListViewControllerDelegate> delegate;
 @end

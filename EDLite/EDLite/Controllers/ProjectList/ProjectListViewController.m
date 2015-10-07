@@ -13,6 +13,7 @@
 #import "ProjectListCell.h"
 #import "LoginViewController.h"
 #import "TicketListViewController.h"
+#import "TicketViewController.h"
 @interface ProjectListViewController () <LoginViewControllerDelegate,ProjectListCellDelegate>
 
 @property (nonatomic) SyncManager* syncManager;
@@ -114,9 +115,13 @@
 #pragma mark -- UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    EDLConnection* connection = [[ConnectionManager sharedConnectionManager].connectionList objectAtIndex:indexPath.row];
-    self.ticketListViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"TicketListViewController"];
-    self.ticketListViewController.connection =  connection;
-    [self.navigationController pushViewController:self.ticketListViewController animated:YES];
+//    self.ticketListViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"TicketListViewController"];
+//    self.ticketListViewController.connection =  connection;
+//    [self.navigationController pushViewController:self.ticketListViewController animated:YES];
+    TicketViewController *ticketViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"TicketViewController"];
+    ticketViewController.connection =  connection;
+    [self.navigationController pushViewController:ticketViewController animated:YES];
+    
 }
 
 

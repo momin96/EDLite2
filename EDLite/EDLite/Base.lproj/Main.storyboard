@@ -112,6 +112,110 @@
             </objects>
             <point key="canvasLocation" x="1556.5" y="270.5"/>
         </scene>
+        <!--TicketViewController-->
+        <scene sceneID="TAy-vm-Bk7">
+            <objects>
+                <viewController storyboardIdentifier="TicketViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WEk-KA-L6G" userLabel="TicketViewController" customClass="TicketViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f1T-Wa-4IF"/>
+                        <viewControllerLayoutGuide type="bottom" id="zsY-je-Vq0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="htq-lB-Ymw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHY-s2-pfE" userLabel="childContainerView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zZO-Az-S1a">
+                                        <rect key="frame" x="0.0" y="56" width="125" height="611"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwg-gD-0HV">
+                                                <rect key="frame" x="1" y="21" width="126" height="30"/>
+                                                <state key="normal" title="Tickets">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tappedTicketButton:" destination="WEk-KA-L6G" eventType="touchUpInside" id="iKE-je-ygV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUK-Hq-i8V">
+                                                <rect key="frame" x="0.0" y="65" width="126" height="30"/>
+                                                <state key="normal" title="Map Groups">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tappedMapGroupButton:" destination="WEk-KA-L6G" eventType="touchUpInside" id="8Fk-ua-18G"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="aHY-s2-pfE" secondAttribute="trailing" id="HNx-LB-GFI"/>
+                            <constraint firstItem="aHY-s2-pfE" firstAttribute="leading" secondItem="htq-lB-Ymw" secondAttribute="leading" id="I72-za-XEy"/>
+                            <constraint firstItem="zsY-je-Vq0" firstAttribute="top" secondItem="aHY-s2-pfE" secondAttribute="bottom" id="KpH-qk-G41"/>
+                            <constraint firstItem="aHY-s2-pfE" firstAttribute="top" secondItem="htq-lB-Ymw" secondAttribute="top" id="QvQ-R8-ZD6"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="childContainerView" destination="aHY-s2-pfE" id="sYU-9i-uGx"/>
+                        <outlet property="masterView" destination="zZO-Az-S1a" id="icd-0L-1LP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ttP-7G-Rmy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2048.5" y="270.5"/>
+        </scene>
+        <!--Map Group View Controller-->
+        <scene sceneID="jev-Sx-kUJ">
+            <objects>
+                <viewController storyboardIdentifier="MapGroupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nDc-g3-yIZ" customClass="MapGroupViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gwr-P3-kLD"/>
+                        <viewControllerLayoutGuide type="bottom" id="8gZ-OI-v7P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AYB-1C-UL2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="gVg-Nq-Bmd">
+                                <rect key="frame" x="0.0" y="105" width="375" height="562"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="WEQ-Ks-uYT">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WEQ-Ks-uYT" id="pay-UA-oaG">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WtL-eK-zPa">
+                                <rect key="frame" x="0.0" y="73" width="30" height="30"/>
+                                <state key="normal" title="&gt;">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedShowMasterView:" destination="nDc-g3-yIZ" eventType="touchUpInside" id="YQH-qt-Skh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I9z-yP-4Q8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2048.5" y="1023.5"/>
+        </scene>
         <!--Ticket List View Controller-->
         <scene sceneID="mod-XJ-qhP">
             <objects>
@@ -196,6 +300,15 @@
                                     <outlet property="delegate" destination="tDX-dA-LpD" id="5rL-AX-Yon"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aWx-Ek-FFa">
+                                <rect key="frame" x="0.0" y="73" width="30" height="30"/>
+                                <state key="normal" title="&gt;">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedShowMasterView:" destination="tDX-dA-LpD" eventType="touchUpInside" id="pED-Zp-oTn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -208,7 +321,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XeW-al-OJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2076.5" y="270.5"/>
+            <point key="canvasLocation" x="2527.5" y="280.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hi9-qp-wAg">
@@ -228,6 +341,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Td-Y9-ScU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="669.5" y="270.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="uD3-XL-ph6">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Rx0-nF-WGK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WiN-uc-2Yt"/>
+                        <viewControllerLayoutGuide type="bottom" id="wD5-om-rfl"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0Ku-1x-GxR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sv1-Ac-RxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

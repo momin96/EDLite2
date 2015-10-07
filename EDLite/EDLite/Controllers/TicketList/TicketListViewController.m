@@ -138,6 +138,11 @@
         NSLog(@"Cannot create new Ticket");
 }
 
+-(IBAction)tappedShowMasterView:(UIButton*)sender{
+    if([_delegate respondsToSelector:@selector(showMasterView)])
+        [_delegate showMasterView];
+}
+
 #pragma mark -- KVO
 -(void)observeValueForKeyPath:(NSString *)keyPath
                      ofObject:(id)object
