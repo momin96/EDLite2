@@ -12,6 +12,8 @@
 		5D09CDD01BA2D57F0050BE47 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D09CDCF1BA2D57F0050BE47 /* Project.m */; };
 		5D0C4C7F1BAFD954002E8BE5 /* EDLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0C4C7E1BAFD954002E8BE5 /* EDLConnection.m */; };
 		5D0C4C821BAFDA53002E8BE5 /* EDLContracts.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0C4C811BAFDA53002E8BE5 /* EDLContracts.m */; };
+		5D0E04231BC4F4E500AC2CD6 /* TicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E04221BC4F4E500AC2CD6 /* TicketViewController.m */; };
+		5D0E04261BC527F500AC2CD6 /* MapGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E04251BC527F500AC2CD6 /* MapGroupViewController.m */; };
 		5D22E1661BBA5946004664ED /* TicketListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D22E1651BBA5946004664ED /* TicketListCell.m */; };
 		5D22E1691BBA5964004664ED /* TicketListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D22E1681BBA5964004664ED /* TicketListViewController.m */; };
 		5D994B191BB955A8008DC320 /* EDLDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D994B181BB955A8008DC320 /* EDLDataManager.m */; };
@@ -57,6 +59,10 @@
 		5D0C4C7E1BAFD954002E8BE5 /* EDLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EDLConnection.m; path = Managers/EDLConnection.m; sourceTree = "<group>"; };
 		5D0C4C801BAFDA53002E8BE5 /* EDLContracts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDLContracts.h; path = EDLite/Models/EDLContracts.h; sourceTree = "<group>"; };
 		5D0C4C811BAFDA53002E8BE5 /* EDLContracts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EDLContracts.m; path = EDLite/Models/EDLContracts.m; sourceTree = "<group>"; };
+		5D0E04211BC4F4E500AC2CD6 /* TicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketViewController.h; path = Controllers/TicketList/TicketViewController.h; sourceTree = "<group>"; };
+		5D0E04221BC4F4E500AC2CD6 /* TicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketViewController.m; path = Controllers/TicketList/TicketViewController.m; sourceTree = "<group>"; };
+		5D0E04241BC527F500AC2CD6 /* MapGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapGroupViewController.h; path = Controllers/Map/MapGroupViewController.h; sourceTree = "<group>"; };
+		5D0E04251BC527F500AC2CD6 /* MapGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapGroupViewController.m; path = Controllers/Map/MapGroupViewController.m; sourceTree = "<group>"; };
 		5D22E1641BBA5946004664ED /* TicketListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketListCell.h; path = Controllers/TicketList/TicketListCell.h; sourceTree = "<group>"; };
 		5D22E1651BBA5946004664ED /* TicketListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketListCell.m; path = Controllers/TicketList/TicketListCell.m; sourceTree = "<group>"; };
 		5D22E1671BBA5964004664ED /* TicketListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketListViewController.h; path = Controllers/TicketList/TicketListViewController.h; sourceTree = "<group>"; };
@@ -124,6 +130,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D0E04201BC4F41600AC2CD6 /* Ticket */ = {
+			isa = PBXGroup;
+			children = (
+				5D22E1631BBA5917004664ED /* TicketList */,
+				5D0E04211BC4F4E500AC2CD6 /* TicketViewController.h */,
+				5D0E04221BC4F4E500AC2CD6 /* TicketViewController.m */,
+			);
+			name = Ticket;
+			sourceTree = "<group>";
+		};
+		5D0E04271BC527F900AC2CD6 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				5D0E04241BC527F500AC2CD6 /* MapGroupViewController.h */,
+				5D0E04251BC527F500AC2CD6 /* MapGroupViewController.m */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
 		5D22E1631BBA5917004664ED /* TicketList */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,7 +256,8 @@
 			children = (
 				5DC9E4771BA14D99000414F4 /* ProjectList */,
 				5DC397531BBA967C00F2C732 /* Login */,
-				5D22E1631BBA5917004664ED /* TicketList */,
+				5D0E04201BC4F41600AC2CD6 /* Ticket */,
+				5D0E04271BC527F900AC2CD6 /* Map */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -418,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DC9E4901BA183C1000414F4 /* Constants.m in Sources */,
+				5D0E04261BC527F500AC2CD6 /* MapGroupViewController.m in Sources */,
 				5DC9E47C1BA14EBC000414F4 /* CRLoadingView.m in Sources */,
 				5D09CDCD1BA2D2FB0050BE47 /* User.m in Sources */,
 				5D0C4C821BAFDA53002E8BE5 /* EDLContracts.m in Sources */,
@@ -428,6 +455,7 @@
 				5DC9E49E1BA19B59000414F4 /* SyncManager.m in Sources */,
 				5D994B191BB955A8008DC320 /* EDLDataManager.m in Sources */,
 				5DC9E4751BA14D86000414F4 /* ProjectListViewController.m in Sources */,
+				5D0E04231BC4F4E500AC2CD6 /* TicketViewController.m in Sources */,
 				5DC9E4931BA19141000414F4 /* ConnectionManager.m in Sources */,
 				5DC9E4531BA14CDD000414F4 /* AppDelegate.m in Sources */,
 				5DC9E4501BA14CDD000414F4 /* main.m in Sources */,
