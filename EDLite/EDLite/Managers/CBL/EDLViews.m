@@ -74,4 +74,16 @@
     return liveQueryView;
 }
 
++(CBLView*)mapGroupView:(CBLDatabase*)database{
+    CBLView* mapGroupView = [database viewNamed:@"_mapGroupView"];
+    if (!mapGroupView.mapBlock) {
+        [mapGroupView setMapBlock:MAPBLOCK({
+            if([doc[@"type"] isEqualToString:@"IB.EdBundle.Document.Map"])
+                emit(doc[@"map"],@1);
+        }) reduceBlock:REDUCEBLOCK({
+            return [CBLView totalValues:values];
+        }) version:@"1.0"];
+    }
+    return mapGroupView;
+}
 @end

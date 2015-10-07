@@ -38,6 +38,7 @@
 -(void)addMapGroupController{
     self.mapGroupViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"MapGroupViewController"];
     [self addChildViewController:self.mapGroupViewController];
+    self.mapGroupViewController.connection = self.connection;
     self.mapGroupViewController.delegate = self;
     [self.childContainerView addSubview:self.mapGroupViewController.view];
 }

@@ -19,4 +19,5 @@
 -(NSString*)projectDocumentID:(CBLDatabase*)database;
 -(NSArray*)completedArchivedTicketListView:(BOOL)archivedCompleted inDatabase:(CBLDatabase*)database;
 -(CBLLiveQuery*)startLiveQuery:(CBLDatabase*)database;
+-(NSInteger)mapGroupCount:(CBLDatabase*)database;
 @end

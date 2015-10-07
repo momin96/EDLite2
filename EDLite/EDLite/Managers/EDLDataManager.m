@@ -77,4 +77,12 @@
     CBLLiveQuery* liveQuery = [[liveQueryView createQuery] asLiveQuery];
     return  liveQuery;
 }
+
+-(NSInteger)mapGroupCount:(CBLDatabase*)database{
+    CBLView* mapGroupCount = [database existingViewNamed:@"_mapGroupView"];
+    NSError* error;
+    CBLQuery* query = [mapGroupCount createQuery];
+    CBLQueryEnumerator* queryResult = [query run:&error];
+    return [[queryResult rowAtIndex:0].value integerValue];
+}
 @end

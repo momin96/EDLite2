@@ -40,6 +40,8 @@
     [EDLViews completedArchivedTicketListView:database];
     
     [EDLViews liveQueryView:database];
+    
+    [EDLViews mapGroupView:database];
 }
 
 -(instancetype)initWithProjectInfo:(Project *)projectInfo{

@@ -16,4 +16,5 @@
 
 @interface MapGroupViewController : UIViewController
 @property (weak, nonatomic) id <MapGroupViewControllerDelegate> delegate;
+@property (nonatomic) EDLConnection* connection;
 @end

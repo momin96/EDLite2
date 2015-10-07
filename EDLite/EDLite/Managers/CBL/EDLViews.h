@@ -19,4 +19,6 @@
 +(CBLView*)completedArchivedTicketListView:(CBLDatabase*)database;
 
 +(CBLView*)liveQueryView:(CBLDatabase*)database;
+
++(CBLView*)mapGroupView:(CBLDatabase*)database;
 @end
