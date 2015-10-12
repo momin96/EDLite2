@@ -12,6 +12,7 @@
 @interface MapGroupViewController ()
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
 @property (nonatomic) NSDictionary* mapGroupDict;
+@property (nonatomic) NSArray* mapsList;
 @end
 
 @implementation MapGroupViewController
@@ -29,6 +30,7 @@
         self.tableView.hidden = NO;
         [CRLoadingView removeView];
         self.mapGroupDict = mapGroupDict;
+        self.mapsList = [self.mapGroupDict allKeys];
     }];
 }
 
@@ -49,9 +51,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString* cellID = @"GroupMapCell";
     EDLMapCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    NSArray* mapsList = [self.mapGroupDict allKeys];
-    cell.mapGroup.text = mapsList[indexPath.row];
-    cell.countOfMaps.text = [NSString stringWithFormat:@"%u maps",(unsigned)[[self.mapGroupDict objectForKey:mapsList[indexPath.row]] count]];
+    cell.mapGroup.text = self.mapsList[indexPath.row];
+    cell.countOfMaps.text = [NSString stringWithFormat:@"%u maps",(unsigned)[[self.mapGroupDict objectForKey:self.mapsList[indexPath.row]] count]];
     return cell;
 }
 
