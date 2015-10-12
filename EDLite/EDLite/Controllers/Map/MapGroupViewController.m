@@ -8,7 +8,7 @@
 
 #import "MapGroupViewController.h"
 #import "EDLMapGroup.h"
-
+#import "EDLMapCell.h"
 @interface MapGroupViewController ()
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
 @property (nonatomic) NSDictionary* mapGroupDict;
@@ -48,8 +48,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString* cellID = @"GroupMapCell";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    
+    EDLMapCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    NSArray* mapsList = [self.mapGroupDict allKeys];
+    cell.mapGroup.text = mapsList[indexPath.row];
+    cell.countOfMaps.text = [NSString stringWithFormat:@"%u maps",(unsigned)[[self.mapGroupDict objectForKey:mapsList[indexPath.row]] count]];
     return cell;
 }
 

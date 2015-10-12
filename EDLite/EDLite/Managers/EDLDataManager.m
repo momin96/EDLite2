@@ -9,6 +9,7 @@
 #import "EDLDataManager.h"
 #import "Ticket.h"
 #import "EDLMapGroup.h"
+#import "EDLMap.h"
 @implementation EDLDataManager
 
 +(EDLDataManager*)sharedDataManager{
@@ -95,11 +96,14 @@
     NSMutableArray* allMapGroup = [[NSMutableArray alloc]init];
     
     for (CBLQueryRow* row in results) {
-        EDLMapGroup* mapGroup = [EDLMapGroup new];
-        mapGroup.name = row.key1;
-        mapGroup.mapName = row.key2;
-        NSLog(@"map Group [%@], Name [%@]",mapGroup.name,row.key2);
-        [allMapGroup addObject:mapGroup];
+        EDLMap* map = [EDLMap modelForDocument:row.document];
+        [allMapGroup addObject:map];
+
+//        EDLMapGroup* mapGroup = [EDLMapGroup new];
+//        mapGroup.name = row.key1;
+//        mapGroup.mapName = row.key2;
+//        NSLog(@"map Group [%@], Name [%@]",mapGroup.name,row.key2);
+//        [allMapGroup addObject:mapGroup];
     }
    NSDictionary* dict = [self mapGroupWithMapArray:allMapGroup];
     if(dict)
@@ -109,17 +113,17 @@
 -(NSDictionary*)mapGroupWithMapArray:(NSArray*)mapList{
     NSMutableDictionary* mapGroupDict = [[NSMutableDictionary alloc] init];
     NSMutableArray* mapNameList;
-    for (EDLMapGroup* group in mapList) {
-        if ([[mapGroupDict allKeys] containsObject:group.name]) {
-            [mapNameList addObject:group.mapName];
-            [mapGroupDict setObject:mapNameList forKey:group.name];
+    
+    for (EDLMap* map in mapList) {
+        if ([[mapGroupDict allKeys] containsObject:map.group]) {
+            [mapNameList addObject:map.name];
+            [mapGroupDict setObject:mapNameList forKey:map.group];
         }
         else{
             mapNameList = [[NSMutableArray alloc] init];
-            [mapNameList addObject:group.mapName];
-            [mapGroupDict setObject:mapNameList forKey:group.name];
+            [mapNameList addObject:map.name];
+            [mapGroupDict setObject:mapNameList forKey:map.group];
         }
-        
     }
     NSLog(@"Dict : [%@]",mapGroupDict);
     return mapGroupDict;
