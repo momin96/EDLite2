@@ -8,6 +8,7 @@
 
 #import "EDLDataManager.h"
 #import "Ticket.h"
+#import "EDLMapGroup.h"
 @implementation EDLDataManager
 
 +(EDLDataManager*)sharedDataManager{
@@ -78,11 +79,29 @@
     return  liveQuery;
 }
 
--(NSInteger)mapGroupCount:(CBLDatabase*)database{
-    CBLView* mapGroupCount = [database existingViewNamed:@"_mapGroupView"];
-    NSError* error;
-    CBLQuery* query = [mapGroupCount createQuery];
-    CBLQueryEnumerator* queryResult = [query run:&error];
-    return [[queryResult rowAtIndex:0].value integerValue];
+-(void)mapGroupViewInDatabase:(CBLDatabase*)database
+            completionHandler:(void(^)(NSArray* mapGroupList))completionHandler{
+    CBLView* mapGroupView = [database existingViewNamed:@"_mapGroupView"];
+    CBLQuery* query = [mapGroupView createQuery];
+    NSError *error;
+//    NSString* projectID = [self projectDocumentID:database];
+//    query.startKey = @[projectID];
+//    query.endKey = @[projectID];
+//    query.mapOnly = NO;
+//    query.groupLevel = 3;
+    
+    CBLQueryEnumerator *results =[query run:&error];
+    
+    NSMutableArray* allMapGroup = [[NSMutableArray alloc]init];
+    
+    for (CBLQueryRow* row in results) {
+        EDLMapGroup* mapGroup = [EDLMapGroup new];
+        mapGroup.name = row.key0;
+        NSLog(@"map Group [%@]",mapGroup.name);
+        [allMapGroup addObject:mapGroup];
+    }
+    if(allMapGroup)
+        completionHandler(allMapGroup);
 }
+
 @end

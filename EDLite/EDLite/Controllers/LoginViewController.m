@@ -54,7 +54,7 @@
     ConnectionManager* connectionManager = [ConnectionManager sharedConnectionManager];
     CBLDocument* userDocID = [connectionManager replicateUserDocWithDocID:docID];
     self.activeUser = [[User alloc] initUserWithDocument:userDocID];
-    if(self.activeUser)
+    if(self.activeUser.name)
        [self loadProjectViewController];
 }
 

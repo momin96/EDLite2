@@ -78,11 +78,13 @@
     CBLView* mapGroupView = [database viewNamed:@"_mapGroupView"];
     if (!mapGroupView.mapBlock) {
         [mapGroupView setMapBlock:MAPBLOCK({
+//            NSString* archived = doc[@"archived"];
+//            NSString* type = doc[@"type"];
             if([doc[@"type"] isEqualToString:@"IB.EdBundle.Document.Map"])
-                emit(doc[@"map"],@1);
-        }) reduceBlock:REDUCEBLOCK({
-            return [CBLView totalValues:values];
-        }) version:@"1.0"];
+                emit(doc[@"group"],@1);
+
+//            if([type isEqualToString:kMapType] && !archived)
+        }) version:@"1.5"];
     }
     return mapGroupView;
 }

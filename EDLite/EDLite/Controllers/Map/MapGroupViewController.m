@@ -7,6 +7,7 @@
 //
 
 #import "MapGroupViewController.h"
+#import "EDLMapGroup.h"
 
 @interface MapGroupViewController ()
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
@@ -17,14 +18,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.tableView.hidden = YES;
-//    [CRLoadingView loadingViewInView:self.view Title:@"Loading Map Groups"];
+    self.tableView.hidden = YES;
+    [CRLoadingView loadingViewInView:self.view Title:@"Loading Map Groups"];
     [self showMapGroups];
 }
 
 -(void)showMapGroups{
     EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
-    _countOfMapGroup = [dataManager mapGroupCount:self.connection.database];
+    [dataManager mapGroupViewInDatabase:self.connection.database completionHandler:^(NSArray *mapGroupList) {
+        self.tableView.hidden = NO;
+        [CRLoadingView removeView];
+        for (EDLMapGroup* mapGroup in mapGroupList) {
+            NSLog(@"Map Group :%@",mapGroup.name);
+        }
+    }];
+}
+
+-(void)dealloc{
+    NSLog(@"Dealloc of MapGroupViewController");
 }
 
 -(IBAction)tappedShowMasterView:(UIButton*)sender{
@@ -34,7 +45,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _countOfMapGroup;
+    return _countOfMapGroup=2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

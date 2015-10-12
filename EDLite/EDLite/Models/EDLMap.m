@@ -9,5 +9,6 @@
 #import "EDLMap.h"
 
 @implementation EDLMap
+@dynamic _id,_rev,group,project,name,timeline,archived,renderInfo;
 
 @end
