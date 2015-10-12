@@ -11,7 +11,7 @@
 
 @interface MapGroupViewController ()
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
-@property (assign, readonly) NSInteger countOfMapGroup;
+@property (nonatomic) NSDictionary* mapGroupDict;
 @end
 
 @implementation MapGroupViewController
@@ -25,12 +25,10 @@
 
 -(void)showMapGroups{
     EDLDataManager* dataManager = [EDLDataManager sharedDataManager];
-    [dataManager mapGroupViewInDatabase:self.connection.database completionHandler:^(NSArray *mapGroupList) {
+    [dataManager mapGroupViewInDatabase:self.connection.database completionHandler:^(NSDictionary* mapGroupDict) {
         self.tableView.hidden = NO;
         [CRLoadingView removeView];
-        for (EDLMapGroup* mapGroup in mapGroupList) {
-            NSLog(@"Map Group :%@",mapGroup.name);
-        }
+        self.mapGroupDict = mapGroupDict;
     }];
 }
 
@@ -45,7 +43,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _countOfMapGroup=2;
+    return [[self.mapGroupDict allKeys] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

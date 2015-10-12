@@ -78,12 +78,11 @@
     CBLView* mapGroupView = [database viewNamed:@"_mapGroupView"];
     if (!mapGroupView.mapBlock) {
         [mapGroupView setMapBlock:MAPBLOCK({
-//            NSString* archived = doc[@"archived"];
-//            NSString* type = doc[@"type"];
-            if([doc[@"type"] isEqualToString:@"IB.EdBundle.Document.Map"])
-                emit(doc[@"group"],@1);
+            
+            NSString* type = doc[@"type"];
+            if([type isEqualToString:kMapType])
+                emit(@[doc[@"project"], doc[@"group"], doc[@"name"]],@1);
 
-//            if([type isEqualToString:kMapType] && !archived)
         }) version:@"1.5"];
     }
     return mapGroupView;

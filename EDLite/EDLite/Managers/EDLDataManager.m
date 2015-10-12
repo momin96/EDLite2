@@ -80,7 +80,7 @@
 }
 
 -(void)mapGroupViewInDatabase:(CBLDatabase*)database
-            completionHandler:(void(^)(NSArray* mapGroupList))completionHandler{
+            completionHandler:(void(^)(NSDictionary* mapGroupDict))completionHandler{
     CBLView* mapGroupView = [database existingViewNamed:@"_mapGroupView"];
     CBLQuery* query = [mapGroupView createQuery];
     NSError *error;
@@ -88,7 +88,7 @@
 //    query.startKey = @[projectID];
 //    query.endKey = @[projectID];
 //    query.mapOnly = NO;
-//    query.groupLevel = 3;
+//    query.groupLevel = 2;
     
     CBLQueryEnumerator *results =[query run:&error];
     
@@ -96,12 +96,33 @@
     
     for (CBLQueryRow* row in results) {
         EDLMapGroup* mapGroup = [EDLMapGroup new];
-        mapGroup.name = row.key0;
-        NSLog(@"map Group [%@]",mapGroup.name);
+        mapGroup.name = row.key1;
+        mapGroup.mapName = row.key2;
+        NSLog(@"map Group [%@], Name [%@]",mapGroup.name,row.key2);
         [allMapGroup addObject:mapGroup];
     }
-    if(allMapGroup)
-        completionHandler(allMapGroup);
+   NSDictionary* dict = [self mapGroupWithMapArray:allMapGroup];
+    if(dict)
+        completionHandler(dict);
+}
+//This code is piece of junk, Soon it ll be improved using CBLQuery properties
+-(NSDictionary*)mapGroupWithMapArray:(NSArray*)mapList{
+    NSMutableDictionary* mapGroupDict = [[NSMutableDictionary alloc] init];
+    NSMutableArray* mapNameList;
+    for (EDLMapGroup* group in mapList) {
+        if ([[mapGroupDict allKeys] containsObject:group.name]) {
+            [mapNameList addObject:group.mapName];
+            [mapGroupDict setObject:mapNameList forKey:group.name];
+        }
+        else{
+            mapNameList = [[NSMutableArray alloc] init];
+            [mapNameList addObject:group.mapName];
+            [mapGroupDict setObject:mapNameList forKey:group.name];
+        }
+        
+    }
+    NSLog(@"Dict : [%@]",mapGroupDict);
+    return mapGroupDict;
 }
 
 @end
