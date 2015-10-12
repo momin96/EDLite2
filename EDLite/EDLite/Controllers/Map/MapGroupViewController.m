@@ -9,6 +9,7 @@
 #import "MapGroupViewController.h"
 #import "EDLMapGroup.h"
 #import "EDLMapCell.h"
+#import "MapGroupDetailViewController.h"
 @interface MapGroupViewController ()
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
 @property (nonatomic) NSDictionary* mapGroupDict;
@@ -58,7 +59,10 @@
 
 #pragma mark -- UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    MapGroupDetailViewController* mapGroupDetailViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"MapGroupDetailViewController"];
+    mapGroupDetailViewController.groupName = [self.mapsList objectAtIndex:indexPath.row];
+    mapGroupDetailViewController.mapGroupDict = self.mapGroupDict;
+    [self.navigationController pushViewController:mapGroupDetailViewController animated:YES];
 }
 
 @end
