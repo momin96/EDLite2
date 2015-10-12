@@ -43,9 +43,9 @@
         [_delegate showMasterView];
 }
 
-
+#pragma mark -- UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[self.mapGroupDict allKeys] count];
+    return [self.mapsList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -54,6 +54,11 @@
     cell.mapGroup.text = self.mapsList[indexPath.row];
     cell.countOfMaps.text = [NSString stringWithFormat:@"%u maps",(unsigned)[[self.mapGroupDict objectForKey:self.mapsList[indexPath.row]] count]];
     return cell;
+}
+
+#pragma mark -- UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
 @end
