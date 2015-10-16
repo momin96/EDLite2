@@ -11,4 +11,11 @@
 @implementation EDLMap
 @dynamic _id,_rev,group,project,name,timeline,archived,renderInfo;
 
+
+-(UIImage*)getThumbImage{
+    CBLAttachment* attachment = [self attachmentNamed:@"tiles_0_0x0.png"];
+    UIImage* thumbImage = [UIImage imageWithData:attachment.content];
+    return thumbImage;
+}
+
 @end

@@ -8,6 +8,8 @@
 
 #import "MapGroupDetailViewController.h"
 #import "EDLSingleMapsCell.h"
+#import "EDLMap.h"
+
 @interface MapGroupDetailViewController ()
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
 @property (nonatomic) NSArray* mapList;
@@ -29,7 +31,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString* cellID = @"mapCell";
     EDLSingleMapsCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    cell.mapNameLabel.text = self.mapList[indexPath.row];
+    EDLMap* map = self.mapList[indexPath.row];
+    cell.mapthumbImageView.image = [map getThumbImage];
+    cell.mapNameLabel.text = map.name;
     return cell;
 }
 

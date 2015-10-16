@@ -83,7 +83,9 @@
             if([type isEqualToString:kMapType])
                 emit(@[doc[@"project"], doc[@"group"], doc[@"name"]],@1);
 
-        }) version:@"1.5"];
+        }) reduceBlock:REDUCEBLOCK({
+            return [CBLView totalValues:values];
+        })  version:@"1.9"];
     }
     return mapGroupView;
 }

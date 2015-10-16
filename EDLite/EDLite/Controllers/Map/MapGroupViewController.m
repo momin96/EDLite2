@@ -60,6 +60,7 @@
 #pragma mark -- UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MapGroupDetailViewController* mapGroupDetailViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"MapGroupDetailViewController"];
+    [self.mapGroupDict objectForKey:self.mapsList[indexPath.row]];
     mapGroupDetailViewController.groupName = [self.mapsList objectAtIndex:indexPath.row];
     mapGroupDetailViewController.mapGroupDict = self.mapGroupDict;
     [self.navigationController pushViewController:mapGroupDetailViewController animated:YES];

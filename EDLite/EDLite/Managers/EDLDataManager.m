@@ -85,48 +85,58 @@
     CBLView* mapGroupView = [database existingViewNamed:@"_mapGroupView"];
     CBLQuery* query = [mapGroupView createQuery];
     NSError *error;
-//    NSString* projectID = [self projectDocumentID:database];
-//    query.startKey = @[projectID];
-//    query.endKey = @[projectID];
-//    query.mapOnly = NO;
-//    query.groupLevel = 2;
+    NSString* projectID = [self projectDocumentID:database];
+    query.startKey = @[projectID];
+    query.endKey = @[projectID,@{}];
+    query.groupLevel = 3;
     
     CBLQueryEnumerator *results =[query run:&error];
     
     NSMutableArray* allMapGroup = [[NSMutableArray alloc]init];
     
     for (CBLQueryRow* row in results) {
-        EDLMap* map = [EDLMap modelForDocument:row.document];
-        [allMapGroup addObject:map];
-
-//        EDLMapGroup* mapGroup = [EDLMapGroup new];
-//        mapGroup.name = row.key1;
-//        mapGroup.mapName = row.key2;
-//        NSLog(@"map Group [%@], Name [%@]",mapGroup.name,row.key2);
-//        [allMapGroup addObject:mapGroup];
+        EDLMapGroup* mapGroup = [EDLMapGroup new];
+        mapGroup.name = row.key1;
+        [allMapGroup addObject:mapGroup];
     }
-   NSDictionary* dict = [self mapGroupWithMapArray:allMapGroup];
-    if(dict)
-        completionHandler(dict);
+   NSArray* groupList = [self mapGroupWithMapArray:allMapGroup];
+    NSDictionary* mapDict = [self addMapGroupList:groupList inDatabase:database];
+    if(mapDict)
+        completionHandler(mapDict);
 }
+
 //This code is piece of junk, Soon it ll be improved using CBLQuery properties
--(NSDictionary*)mapGroupWithMapArray:(NSArray*)mapList{
-    NSMutableDictionary* mapGroupDict = [[NSMutableDictionary alloc] init];
-    NSMutableArray* mapNameList;
+-(NSArray*)mapGroupWithMapArray:(NSArray*)mapList{
     
-    for (EDLMap* map in mapList) {
-        if ([[mapGroupDict allKeys] containsObject:map.group]) {
-            [mapNameList addObject:map.name];
-            [mapGroupDict setObject:mapNameList forKey:map.group];
-        }
-        else{
-            mapNameList = [[NSMutableArray alloc] init];
-            [mapNameList addObject:map.name];
-            [mapGroupDict setObject:mapNameList forKey:map.group];
-        }
+    NSMutableArray* groupList = [[NSMutableArray alloc] init];
+    for (EDLMapGroup *group in mapList) {
+        if (![groupList containsObject:group.name])
+            [groupList addObject:group.name];
     }
-    NSLog(@"Dict : [%@]",mapGroupDict);
-    return mapGroupDict;
+    return groupList;
+}
+
+
+-(NSDictionary*)addMapGroupList:(NSArray*)groupList inDatabase:(CBLDatabase*)database{
+   CBLQuery* query = [[database existingViewNamed:@"_mapGroupView"] createQuery];
+    NSError *error;
+    NSString* projectID = [self projectDocumentID:database];
+    NSMutableDictionary* mapDict = [[NSMutableDictionary alloc] init];
+    for (NSString* group in groupList) {
+        query.startKey = @[projectID, group];
+        query.endKey =  @[projectID, group,@{}];
+        query.mapOnly = YES;
+        NSMutableArray* mapList = [[NSMutableArray alloc] init];
+        CBLQueryEnumerator* result = [query run:&error];
+        for (CBLQueryRow* row in result) {
+            EDLMap* map = [EDLMap modelForDocument:row.document];
+            [mapList addObject:map];
+            NSLog(@"Row keys : [%@]",row.key);
+        }
+        [mapDict setObject:mapList forKey:group];
+    }
+    NSLog(@"Map Dict [%@]",mapDict);
+    return mapDict;
 }
 
 @end

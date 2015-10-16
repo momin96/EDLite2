@@ -11,7 +11,7 @@
 @interface EDLMapGroup : NSObject
 
 @property(nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString* mapName;
+//@property (nonatomic, strong) NSString* mapName;
 @property(nonatomic, assign) NSUInteger numberOfMaps;
 @property(nonatomic, assign) NSUInteger numberOfTickets;
 @property(nonatomic, strong) NSArray *maps;

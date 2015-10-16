@@ -23,6 +23,7 @@
 @property(nonatomic,strong) NSString *archived;
 
 
+-(UIImage*)getThumbImage;
 
 @end
 
