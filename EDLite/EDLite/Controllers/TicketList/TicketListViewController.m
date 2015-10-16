@@ -37,6 +37,7 @@
     [CRLoadingView loadingViewInView:self.view Title:@"Loading Tickets"];
     
     [self showActiveTickets];
+//    [self registerNotification];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -50,6 +51,18 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)registerNotification{
+    [[NSNotificationCenter defaultCenter] addObserverForName:kCBLDocumentChangeNotification object:self queue:nil usingBlock:^(NSNotification *note) {
+        CBLDatabaseChange* changes = note.userInfo[@"change"];
+        NSLog(@"Document : [%@]",changes.documentID);
+    }];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI:) name:kCBLDocumentChangeNotification object:nil];
+}
+-(void)updateUI:(NSNotification*)n{
+    CBLDatabaseChange* changes = n.userInfo[@"change"];
+    NSLog(@"Doc changed : [%@]",changes);
+}
 #pragma mark -- Helper Method
 
 -(void)showCompeletedTickets{
